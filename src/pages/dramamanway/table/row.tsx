@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import type { DramamanwayPost } from '../../../types';
+import styles from './styles.module.scss';
 
 type PostProps = {
     value: DramamanwayPost;
@@ -7,10 +8,10 @@ type PostProps = {
 
 const Row: FC<PostProps> = ({ value }) => {
     return (
-        <div>
+        <div className={styles.row}>
             <p>{value.index}</p>
-            {Object.values(value.points).map((point) => (
-                <p>{point.value}</p>
+            {Object.entries(value.score).map(([key, point]) => (
+                <p key={key}>{point.value}</p>
             ))}
             {/*<img src={value.image} />*/}
         </div>

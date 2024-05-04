@@ -7,8 +7,20 @@ export type ScoreKey = (typeof KEYS)[number];
 export type DramamanwayPost = {
     id: string;
     index: number;
-    title: string;
-    image: string;
+    image: { src: string; bgSrc: string };
+    info: {
+        title: Record<'ru' | 'eng' | 'original', string>;
+        country: string;
+        year: number;
+        episodesNumber: number;
+    };
+    about: string;
+    idea: string;
+    feedback: string;
+    negativeAspects: string;
+    caste: string;
+    score: Record<ScoreKey, Score>;
     text: string;
-    points: Record<ScoreKey, Score>;
+    recommendation: string;
+    nextPostTitle: string;
 };
