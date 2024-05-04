@@ -2,6 +2,7 @@ import { mockPage } from './mock';
 import type { DramamanwayPost, Score, ScoreKey } from '../types';
 import { KEYS, KEYS_DESCRIPTION } from '../constants';
 import { nanoid } from 'nanoid';
+import { DRAMAMANWAY_TEMPLATE } from './dramamanway-template';
 
 const parsePoint = (text: string, key: ScoreKey): Score => {
     // @TODO comment
@@ -27,35 +28,31 @@ export const parseDramamanwayPost = (http: string = mockPage()) => {
 
     const posts = doc.querySelectorAll('.wall_post_cont');
 
-    posts.forEach((post) => {
-        const parsedPost = {
-            id: nanoid(),
-            points: {},
-        } as DramamanwayPost;
+    console.log('here');
+    Array.from(posts)
+        .slice(0, 1)
+        .forEach((post, idx) =>
+            setTimeout(() => {
+                const parsedPost = {
+                    id: nanoid(),
+                    points: {},
+                } as DramamanwayPost;
 
-        post.querySelector('button')?.remove();
-        parsedPost.image =
-            (
-                post.querySelector(
-                    'img.PhotoPrimaryAttachment__imageElement'
-                ) as HTMLImageElement
-            )?.src || '';
+                post.querySelector('button')?.remove();
+                parsedPost.image =
+                    (
+                        post.querySelector(
+                            'img.PhotoPrimaryAttachment__imageElement'
+                        ) as HTMLImageElement
+                    )?.src || '';
 
-        const wallText = post.querySelector('.wall_post_text');
-        const text = wallText?.textContent || '';
+                const wallText = post.querySelector('.wall_post_text');
+                const text = wallText?.textContent || '';
 
-        KEYS.forEach((key) => (parsedPost.points[key] = parsePoint(text, key)));
-
-        const indexMatch = Number(
-            text.match(/\[\s*По\s*пути\s*дорамщика\s*]\s*#(?<index>\d\d?)/i)
-                ?.groups?.index
+                console.log(text, DRAMAMANWAY_TEMPLATE);
+                console.log(text.match(DRAMAMANWAY_TEMPLATE));
+            }, 10 * idx)
         );
-
-        console.log(indexMatch);
-        parsedPost.index = Number.isNaN(indexMatch) ? -1 : indexMatch;
-        parsedPost.text = text || '';
-        parsedPosts.push(parsedPost);
-    });
 
     return parsedPosts;
 };
