@@ -1,15 +1,10 @@
 import React, { FC } from 'react';
-import { parseDramamanwayPost } from '../../lib';
-import Post from './post';
+import Table from './table';
 
 const Dramamanway: FC = () => {
-    const posts = parseDramamanwayPost();
-
     return (
         <div>
-            {posts.map((p) => (
-                <Post value={p} key={p.id} />
-            ))}
+            <Table />
         </div>
     );
 };

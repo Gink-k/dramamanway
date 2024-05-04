@@ -45,6 +45,14 @@ export const parseDramamanwayPost = (http: string = mockPage()) => {
         const text = wallText?.textContent || '';
 
         KEYS.forEach((key) => (parsedPost.points[key] = parsePoint(text, key)));
+
+        const indexMatch = Number(
+            text.match(/\[\s*По\s*пути\s*дорамщика\s*]\s*#(?<index>\d\d?)/i)
+                ?.groups?.index
+        );
+
+        console.log(indexMatch);
+        parsedPost.index = Number.isNaN(indexMatch) ? -1 : indexMatch;
         parsedPost.text = text || '';
         parsedPosts.push(parsedPost);
     });
