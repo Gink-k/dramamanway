@@ -2,7 +2,6 @@
   display: grid;
   grid-auto-flow: column;
   grid-template-rows: 32px auto;
-  padding: 16px;
 }
 
 .row {
@@ -13,14 +12,38 @@
 .row, .header {
   display: grid;
   grid-auto-flow: column;
-  grid-template-columns: minmax(200px, 2fr);
-  grid-auto-columns: minmax(50px, 1fr);
+  grid-template-columns: minmax(150px, 1.5fr);
+  grid-auto-columns: minmax(100px, 1fr);
   grid-template-rows: minmax(32px, 1fr);
   gap: 4px;
+  align-items: center;
+
+  & > *:first-of-type {
+    position: sticky;
+    left: 0;
+    background: white;
+  }
 }
 
 .header {
+  position: sticky;
+  left: 0;
+  top: 0;
   font-size: 12px;
   line-height: 1.225;
-  word-wrap: break-word;
+  background: white;
+  box-shadow: 0 1px 4px 2px #00000090;
+  z-index: 1;
+  overflow: hidden;
+
+  > * {
+    //text-overflow: ellipsis;
+    //white-space: nowrap;
+  }
+}
+
+.scoreValue {
+  font-size: 18px;
+  line-height: 1.225;
+  font-weight: 600;
 }
