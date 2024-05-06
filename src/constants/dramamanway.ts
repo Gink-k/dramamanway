@@ -19,11 +19,11 @@ export const KEYS_DESCRIPTION: Record<ScoreKey, string> = {
     dialogues: 'Диалоги',
     idea: 'Реализация идеи',
     soundtrack: 'Саундтрек',
-    sufficiency: 'Достаточность(отсутствие лишнего)',
+    sufficiency: 'Достаточность',
     caste: 'Каст',
     rewatchingChance: 'Вероятность, что я пересмотрю',
     cliche: 'Клишированность',
     stupidity: 'Тупость',
-    tightness: 'Тупость',
+    tightness: 'Затянутость',
     finalScore: 'Итоговая оценка',
 };

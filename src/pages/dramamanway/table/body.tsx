@@ -4,6 +4,8 @@ import { useStore } from '../../../hooks';
 import { DramamanwayPost } from '../../../types';
 import { DRAMAMANWAY_TEMPLATE } from '../../../lib/dramamanway-template';
 import { parseDramamanwayPost } from '../../../lib';
+import Header from './header';
+import { execFile } from 'child_process';
 
 type BodyProps = {};
 
@@ -20,9 +22,12 @@ const Body: FC<BodyProps> = ({}) => {
         }
     };
 
+    useEffect(() => {
+        fetch();
+    }, []);
+
     return (
         <div>
-            <button onClick={fetch as () => void}>fetch</button>
             {posts.map((p) => (
                 <Row value={p} key={p.id} />
             ))}

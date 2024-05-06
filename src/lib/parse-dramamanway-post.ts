@@ -100,7 +100,7 @@ export async function* parseDramamanwayPost(
                 parsedPost.nextPostTitle = groups.nextPost || '';
 
                 resolve(parsedPost);
-            }, 100 * i)
+            }, 10 * i)
         );
     }
 }

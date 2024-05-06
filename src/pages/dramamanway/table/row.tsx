@@ -9,11 +9,10 @@ type PostProps = {
 const Row: FC<PostProps> = ({ value }) => {
     return (
         <div className={styles.row}>
-            <p>{value.index}</p>
+            <p>{value.info.title.ru}</p>
             {Object.entries(value.score).map(([key, point]) => (
                 <p key={key}>{point.value}</p>
             ))}
-            <p dangerouslySetInnerHTML={{ __html: value.feedback }}></p>
             {/*<img src={value.image} />*/}
         </div>
     );
