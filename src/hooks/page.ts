@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { parseDramamanwayPost } from '../lib';
+import { parseDramamanwayPost, win1251ToUtf8 } from '../lib';
 
 const PUBLIC_URL = 'https://vk.com/wall-222752906?owners_only=1&q=';
 const PROXY_URL = 'https://thingproxy.freeboard.io/fetch/'; // 'https://api.allorigins.win/raw?url='
@@ -9,7 +9,7 @@ type StoreState = {
     fetchDramamanwayPosts: (url?: string) => void;
 };
 
-export const useStore = create<StoreState>()((set) => ({
+export const useStore = create<StoreState>()((set, get) => ({
     dramamanwayPosts: [],
     fetchDramamanwayPosts: async () => {
         const response = await fetch(
@@ -18,11 +18,14 @@ export const useStore = create<StoreState>()((set) => ({
         );
 
         if (response.ok) {
-            const page = await response.text();
-            const dramamanwayPosts = await parseDramamanwayPost(page);
+            const buffer = await response.arrayBuffer();
+            const html = win1251ToUtf8(buffer);
 
-            console.log(dramamanwayPosts);
-            set({ dramamanwayPosts });
+            console.log(html);
+
+            for await (const post of parseDramamanwayPost(html)) {
+                set({ dramamanwayPosts: [...get().dramamanwayPosts, post] });
+            }
         }
     },
 }));

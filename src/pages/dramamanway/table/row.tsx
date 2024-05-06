@@ -13,6 +13,7 @@ const Row: FC<PostProps> = ({ value }) => {
             {Object.entries(value.score).map(([key, point]) => (
                 <p key={key}>{point.value}</p>
             ))}
+            <p dangerouslySetInnerHTML={{ __html: value.feedback }}></p>
             {/*<img src={value.image} />*/}
         </div>
     );

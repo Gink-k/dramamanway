@@ -1,25 +1,28 @@
 import React, { FC, useEffect, useState } from 'react';
 import Row from './row';
-import { parseDramamanwayPost } from '../../../lib';
 import { useStore } from '../../../hooks';
 import { DramamanwayPost } from '../../../types';
+import { DRAMAMANWAY_TEMPLATE } from '../../../lib/dramamanway-template';
+import { parseDramamanwayPost } from '../../../lib';
 
 type BodyProps = {};
 
 const Body: FC<BodyProps> = ({}) => {
-    const [posts, setPosts] = useState<DramamanwayPost[]>([]);
     // const [posts, fetch] = useStore((state) => [
     //     state.dramamanwayPosts,
     //     state.fetchDramamanwayPosts,
     // ]);
+    const [posts, setPosts] = useState<DramamanwayPost[]>([]);
 
-    useEffect(() => {
-        parseDramamanwayPost().then(setPosts);
-    }, []);
+    const fetch = async () => {
+        for await (const post of parseDramamanwayPost()) {
+            setPosts((allPosts) => [...allPosts, post]);
+        }
+    };
 
     return (
         <div>
-            <button onClick={() => console.log('here!!!!!!!!!')}>fetch</button>
+            <button onClick={fetch as () => void}>fetch</button>
             {posts.map((p) => (
                 <Row value={p} key={p.id} />
             ))}
