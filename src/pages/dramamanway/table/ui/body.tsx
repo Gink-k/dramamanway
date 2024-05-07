@@ -1,11 +1,14 @@
 import React, { FC, useEffect } from 'react';
-import Row from './row';
+import { Row } from './row';
 import s from './styles.module.scss';
-import { useDramamanwayPosts, useDramamanwayPostsFetch } from '../../../hooks';
+import {
+    useDramamanwayPosts,
+    useDramamanwayPostsFetch,
+} from '../../../../hooks';
 
 type BodyProps = {};
 
-const Body: FC<BodyProps> = ({}) => {
+export const Body: FC<BodyProps> = ({}) => {
     const posts = useDramamanwayPosts();
     const fetch = useDramamanwayPostsFetch();
 
@@ -20,5 +23,3 @@ const Body: FC<BodyProps> = ({}) => {
         </div>
     );
 };
-
-export default Body;

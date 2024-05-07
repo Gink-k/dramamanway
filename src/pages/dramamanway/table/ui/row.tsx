@@ -1,13 +1,13 @@
 import React, { FC } from 'react';
-import type { DramamanwayPost } from '../../../types';
+import type { DramamanwayPost } from '../../../../types';
 import styles from './styles.module.scss';
-import Score from './score';
+import { Score } from './score';
 
 type PostProps = {
     value: DramamanwayPost;
 };
 
-const Row: FC<PostProps> = ({ value }) => {
+export const Row: FC<PostProps> = ({ value }) => {
     return (
         <div className={styles.row}>
             <p className={styles.firstCell}>
@@ -23,5 +23,3 @@ const Row: FC<PostProps> = ({ value }) => {
         </div>
     );
 };
-
-export default Row;

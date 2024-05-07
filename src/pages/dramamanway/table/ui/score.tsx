@@ -1,14 +1,14 @@
 import React, { FC } from 'react';
 import styles from './styles.module.scss';
 import cx from 'classnames';
-import { MAX_SCORE_VALUE } from '../../../constants';
-import { Score as TScore } from '../../../types';
+import { MAX_SCORE_VALUE } from '../../../../constants';
+import { Score as TScore } from '../../../../types';
 
 type ScoreProps = {
     value: TScore;
 };
 
-const Score: FC<ScoreProps> = ({ value }) => {
+export const Score: FC<ScoreProps> = ({ value }) => {
     const bestScore = value.value === MAX_SCORE_VALUE;
 
     return (
@@ -24,5 +24,3 @@ const Score: FC<ScoreProps> = ({ value }) => {
         </p>
     );
 };
-
-export default Score;

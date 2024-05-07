@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
 import s from './styles.module.scss';
-import Row from './row';
-import { useDramamanwayPostsStdScore } from '../../../hooks';
+import { Row } from './row';
+import { useDramamanwayPostsStdScore } from '../../../../hooks';
 
 type FooterProps = {};
 
-const Footer: FC<FooterProps> = ({}) => {
+export const Footer: FC<FooterProps> = ({}) => {
     const std = useDramamanwayPostsStdScore();
 
     return (
@@ -22,5 +22,3 @@ const Footer: FC<FooterProps> = ({}) => {
         </div>
     );
 };
-
-export default Footer;
