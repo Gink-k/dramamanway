@@ -12,6 +12,7 @@ type StoreState = {
 export const useStore = create<StoreState>()((set, get) => ({
     dramamanwayPosts: [],
     fetchDramamanwayPosts: async () => {
+        /*
         const response = await fetch(
             PROXY_URL +
                 encodeURIComponent(PUBLIC_URL + '[ По пути дорамщика ] #')
@@ -21,11 +22,19 @@ export const useStore = create<StoreState>()((set, get) => ({
             const buffer = await response.arrayBuffer();
             const html = win1251ToUtf8(buffer);
 
-            console.log(html);
-
             for await (const post of parseDramamanwayPost(html)) {
                 set({ dramamanwayPosts: [...get().dramamanwayPosts, post] });
             }
         }
+         */
+        for await (const post of parseDramamanwayPost()) {
+            set({ dramamanwayPosts: [...get().dramamanwayPosts, post] });
+        }
     },
 }));
+
+export const useDramamanwayPosts = () =>
+    useStore((state) => state.dramamanwayPosts);
+
+export const useDramamanwayPostsFetch = () =>
+    useStore((state) => state.fetchDramamanwayPosts);

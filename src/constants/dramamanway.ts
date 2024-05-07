@@ -27,3 +27,5 @@ export const KEYS_DESCRIPTION: Record<ScoreKey, string> = {
     tightness: 'Затянутость',
     finalScore: 'Итоговая оценка',
 };
+
+export const MAX_SCORE_VALUE = 10;
