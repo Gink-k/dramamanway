@@ -29,3 +29,5 @@ export const KEYS_DESCRIPTION: Record<ScoreKey, string> = {
 };
 
 export const MAX_SCORE_VALUE = 10;
+
+export const NEGATIVE_SCORE: ScoreKey[] = ['cliche', 'stupidity', 'tightness'];

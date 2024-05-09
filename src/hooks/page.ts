@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { parseDramamanwayPost, win1251ToUtf8 } from '../lib';
 import { useTableSort } from '../pages/dramamanway/table/lib';
-import { DramamanwayPost } from '../types';
+import { DramamanwayPost, ScoreKey } from '../types';
 
 const PUBLIC_URL = 'https://vk.com/wall-222752906?owners_only=1&q=';
 const PROXY_URL = 'https://thingproxy.freeboard.io/fetch/'; // 'https://api.allorigins.win/raw?url='

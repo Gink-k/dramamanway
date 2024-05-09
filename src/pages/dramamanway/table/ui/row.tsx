@@ -1,9 +1,10 @@
 import React, { FC } from 'react';
-import type { DramamanwayPost } from '../../../../types';
+import type { DramamanwayPost, ScoreKey } from '../../../../types';
 import styles from './styles.module.scss';
 import { Score } from './score';
 import cx from 'classnames';
 import { MAX_SCORE_VALUE } from '../../../../constants';
+import { isBestScore } from '../../../../lib';
 
 type PostProps = {
     value: DramamanwayPost;
@@ -18,15 +19,16 @@ export const Row: FC<PostProps> = ({ value }) => {
                 </span>
                 <span
                     className={cx(styles.title, {
-                        [styles.bestScore]:
-                            value.score.finalScore.value === MAX_SCORE_VALUE,
+                        [styles.bestScore]: isBestScore(
+                            value.score.finalScore.value
+                        ),
                     })}
                 >
                     {value.info.title.ru}
                 </span>
             </p>
             {Object.entries(value.score).map(([key, score]) => (
-                <Score value={score} key={key} />
+                <Score value={score} scoreKey={key as ScoreKey} key={key} />
             ))}
             {/*<img src={value.image} />*/}
         </div>
