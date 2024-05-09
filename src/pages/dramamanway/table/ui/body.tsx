@@ -1,22 +1,38 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { Row } from './row';
 import s from './styles.module.scss';
 import {
-    useDramamanwayPosts,
     useDramamanwayPostsFetch,
     useSortedDramamanwayPosts,
 } from '../../../../hooks';
+import cat from '../../../../assets/images/cat.gif';
 
 type BodyProps = {};
 
 export const Body: FC<BodyProps> = ({}) => {
     const posts = useSortedDramamanwayPosts();
     const fetch = useDramamanwayPostsFetch();
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        fetch();
+        setLoading(true);
+        fetch().catch(() => setLoading(false));
     }, []);
-    console.log(posts);
+
+    useEffect(() => {
+        if (loading && posts.length !== 0) {
+            setLoading(false);
+        }
+    }, [posts, loading]);
+
+    if (loading) {
+        return (
+            <div className={s.loader}>
+                <img src={cat} />
+            </div>
+        );
+    }
+
     return (
         <div className={s.body}>
             {posts.map((p) => (

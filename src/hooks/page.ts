@@ -29,7 +29,7 @@ const OFFSET = 20;
 
 type StoreState = {
     dramamanwayPosts: DramamanwayPost[];
-    fetchDramamanwayPosts: (url?: string) => void;
+    fetchDramamanwayPosts: (url?: string) => Promise<void>;
 };
 
 export const useStore = create<StoreState>()((set, get) => ({
@@ -39,11 +39,10 @@ export const useStore = create<StoreState>()((set, get) => ({
         let maxIndex = -1;
 
         do {
-            /*
             const response = await fetch(constructURL(OFFSET * index));
 
             if (!response.ok) {
-                return;
+                throw new Error('Failed to fetch');
             }
             const buffer = await response.arrayBuffer();
             const html = win1251ToUtf8(buffer);
@@ -51,8 +50,9 @@ export const useStore = create<StoreState>()((set, get) => ({
             if (maxIndex === -1) {
                 maxIndex = getMaxIndex(html);
             }
-             */
-            const html = mockPage();
+            /*
+                const html = mockPage();
+        */
 
             for await (const post of DramamanwayPostUtils.parse(html)) {
                 if (!post) {
