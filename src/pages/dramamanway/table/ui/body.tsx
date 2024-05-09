@@ -16,6 +16,7 @@ export const Body: FC<BodyProps> = ({}) => {
     useEffect(() => {
         fetch();
     }, []);
+    console.log(posts);
     return (
         <div className={s.body}>
             {posts.map((p) => (

@@ -1,10 +1,30 @@
 import { create } from 'zustand';
-import { parseDramamanwayPost, win1251ToUtf8 } from '../lib';
 import { useTableSort } from '../pages/dramamanway/table/lib';
-import { DramamanwayPost, ScoreKey } from '../types';
+import { DramamanwayPost } from '../types';
+import { DramamanwayPostUtils, win1251ToUtf8 } from '../lib';
 
-const PUBLIC_URL = 'https://vk.com/wall-222752906?owners_only=1&q=';
+const PUBLIC_URL = 'https://vk.com/wall-222752906';
 const PROXY_URL = 'https://thingproxy.freeboard.io/fetch/'; // 'https://api.allorigins.win/raw?url='
+const pagesRegex = /<div class="pg_in">(?<maxIndex>\d+)<\/div>/gm;
+
+const constructURL = (offset: number) => {
+    const url = new URL(PUBLIC_URL);
+
+    url.searchParams.set('owners_only', '1');
+    url.searchParams.set('q', '[ По пути дорамщика ] #');
+    url.searchParams.set('offset', offset.toString());
+
+    return PROXY_URL + encodeURIComponent(url.toString());
+};
+
+const getMaxIndex = (html: string) => {
+    const pages = Array.from(html.matchAll(pagesRegex));
+    const page = Number(pages[pages.length - 1]?.groups?.maxIndex) - 1;
+
+    return Number.isNaN(page) ? -1 : page;
+};
+
+const OFFSET = 20;
 
 type StoreState = {
     dramamanwayPosts: DramamanwayPost[];
@@ -14,24 +34,34 @@ type StoreState = {
 export const useStore = create<StoreState>()((set, get) => ({
     dramamanwayPosts: [],
     fetchDramamanwayPosts: async () => {
-        /*
-        const response = await fetch(
-            PROXY_URL +
-                encodeURIComponent(PUBLIC_URL + '[ По пути дорамщика ] #')
-        );
+        let index = 0;
+        let maxIndex = -1;
 
-        if (response.ok) {
+        do {
+            const response = await fetch(constructURL(OFFSET * index));
+
+            if (!response.ok) {
+                return;
+            }
             const buffer = await response.arrayBuffer();
             const html = win1251ToUtf8(buffer);
 
-            for await (const post of parseDramamanwayPost(html)) {
-                set({ dramamanwayPosts: [...get().dramamanwayPosts, post] });
+            if (maxIndex === -1) {
+                maxIndex = getMaxIndex(html);
             }
-        }
-         */
+
+            for await (const post of DramamanwayPostUtils.parse(html)) {
+                set({
+                    dramamanwayPosts: [...get().dramamanwayPosts, post],
+                });
+            }
+            ++index;
+        } while (index <= maxIndex);
+        /*
         for await (const post of parseDramamanwayPost()) {
             set({ dramamanwayPosts: [...get().dramamanwayPosts, post] });
         }
+         */
     },
 }));
 

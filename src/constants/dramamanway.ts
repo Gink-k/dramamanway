@@ -1,4 +1,4 @@
-import type { ScoreKey } from '../types';
+import type { DramamanwayPost, ScoreKey } from '../types';
 
 export const KEYS = [
     'plot',
@@ -31,3 +31,27 @@ export const KEYS_DESCRIPTION: Record<ScoreKey, string> = {
 export const MAX_SCORE_VALUE = 10;
 
 export const NEGATIVE_SCORE: ScoreKey[] = ['cliche', 'stupidity', 'tightness'];
+
+export const EMPTY_DRAMAMANWAY_POST: DramamanwayPost = {
+    id: '',
+    index: -1,
+    image: { src: '', bgSrc: '' },
+    info: {
+        title: { ru: '', eng: '', original: '' },
+        country: '',
+        year: -1,
+        episodesNumber: -1,
+    },
+    about: '',
+    idea: '',
+    feedback: '',
+    negativeAspects: '',
+    caste: '',
+    score: KEYS.reduce(
+        (acc, next) => ({ ...acc, [next]: { comment: '', value: -1 } }),
+        {} as DramamanwayPost['score']
+    ),
+    text: '',
+    recommendation: '',
+    nextPostTitle: '',
+};
