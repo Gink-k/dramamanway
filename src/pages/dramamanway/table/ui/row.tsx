@@ -5,11 +5,11 @@ import { Score } from './score';
 import cx from 'classnames';
 import { isBestScore } from '../../../../lib';
 
-type PostProps = {
+export type RowProps = {
     value: DramamanwayPost;
 };
 
-export const Row: FC<PostProps> = ({ value }) => {
+export const Row: FC<RowProps> = ({ value }) => {
     return (
         <div className={styles.row}>
             <p className={styles.index}>

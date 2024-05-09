@@ -1,6 +1,6 @@
 import { COLUMN_KEYS, SCORE_KEYS } from '../constants';
 
-export type Score = { value: number; comment: string };
+export type Score = { value: number; comment?: string };
 
 export type ScoreKey = (typeof SCORE_KEYS)[number];
 

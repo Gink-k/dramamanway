@@ -9,6 +9,7 @@ import { TableSort, useTableSort, useTableToggleSort } from '../lib';
 import cx from 'classnames';
 import { isNegativeScoreKey } from '../../../../lib';
 import { ScoreKey } from '../../../../types';
+import { TriangleIcons } from '../../../../ui/icons';
 
 type HeaderProps = {};
 
@@ -29,7 +30,14 @@ export const Header: FC<HeaderProps> = ({}) => {
                         [s.negativeCell]: isNegativeScoreKey(key as ScoreKey),
                     })}
                 >
-                    {KEYS_DESCRIPTION[key]} {sort.by === key && sort.order}
+                    {KEYS_DESCRIPTION[key]}{' '}
+                    {sort.by === key && (
+                        <TriangleIcons
+                            className={cx(s.sort, s[sort.order])}
+                            size={16}
+                            fill={'#92C7CF'}
+                        />
+                    )}
                 </div>
             ))}
         </div>

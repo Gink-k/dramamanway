@@ -1,24 +1,28 @@
 import React, { FC } from 'react';
 import s from './styles.module.scss';
-import { Row } from './row';
-import { useDramamanwayPostsStdScore } from '../../../../hooks';
+import { Row, RowProps } from './row';
+import { useDramamanwayPostsScoreStats } from '../../../../hooks';
 
 type FooterProps = {};
 
+const toRowValue = (
+    title: string,
+    score: RowProps['value']['score']
+): RowProps['value'] => {
+    return {
+        index: 0,
+        info: { title: { ru: title } },
+        score: score,
+    } as any;
+};
+
 export const Footer: FC<FooterProps> = ({}) => {
-    const std = useDramamanwayPostsStdScore();
+    const { std, mode } = useDramamanwayPostsScoreStats();
 
     return (
         <div className={s.footer}>
-            <Row
-                value={
-                    {
-                        index: 0,
-                        info: { title: { ru: 'Среднее значение' } },
-                        score: std,
-                    } as any
-                }
-            />
+            <Row value={toRowValue('Самое частое значение', mode)} />
+            <Row value={toRowValue('Среднее значение', std)} />
         </div>
     );
 };

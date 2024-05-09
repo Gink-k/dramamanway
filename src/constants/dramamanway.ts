@@ -17,7 +17,7 @@ export const SCORE_KEYS = [
 export const COLUMN_KEYS = ['index', 'title', ...SCORE_KEYS] as const;
 
 export const KEYS_DESCRIPTION: Record<ColumnKey, string> = {
-    index: 'Индекс',
+    index: '#',
     title: 'Название',
     plot: 'Сюжет',
     dialogues: 'Диалоги',
