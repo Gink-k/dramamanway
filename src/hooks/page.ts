@@ -51,6 +51,10 @@ export const useStore = create<StoreState>()((set, get) => ({
             }
 
             for await (const post of DramamanwayPostUtils.parse(html)) {
+                if (!post) {
+                    return;
+                }
+
                 set({
                     dramamanwayPosts: [...get().dramamanwayPosts, post],
                 });

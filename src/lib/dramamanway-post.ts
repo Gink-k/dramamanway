@@ -51,13 +51,13 @@ export class DramamanwayPostUtils {
         return empty;
     }
 
-    static async *parse(html = mockPage()): AsyncGenerator<DramamanwayPost> {
+    static async *parse(
+        html = mockPage()
+    ): AsyncGenerator<DramamanwayPost | null> {
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, 'text/html');
 
-        const posts = doc.querySelectorAll(
-            '.wall_post_cont'
-        ) as NodeListOf<HTMLElement>;
+        const posts = doc.querySelectorAll('.post') as NodeListOf<HTMLElement>;
 
         for (let i = 0; i < posts.length; ++i) {
             yield await new Promise((resolve) =>
@@ -69,7 +69,7 @@ export class DramamanwayPostUtils {
                     const wallText = getWallInnerHtml(posts[i]);
 
                     if (!wallText) {
-                        return resolve(parsedPost);
+                        return resolve(null);
                     }
                     const { groups = {} } =
                         wallText.match(DRAMAMANWAY_TEMPLATE) || {};
