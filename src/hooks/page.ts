@@ -2,6 +2,7 @@ import { create } from 'zustand';
 import { useTableSort } from '../pages/dramamanway/table/lib';
 import { DramamanwayPost } from '../types';
 import { DramamanwayPostUtils, win1251ToUtf8 } from '../lib';
+import { mockPage } from '../lib/mock';
 
 const PUBLIC_URL = 'https://vk.com/wall-222752906';
 const PROXY_URL = 'https://thingproxy.freeboard.io/fetch/'; // 'https://api.allorigins.win/raw?url='
@@ -38,6 +39,7 @@ export const useStore = create<StoreState>()((set, get) => ({
         let maxIndex = -1;
 
         do {
+            /*
             const response = await fetch(constructURL(OFFSET * index));
 
             if (!response.ok) {
@@ -49,6 +51,8 @@ export const useStore = create<StoreState>()((set, get) => ({
             if (maxIndex === -1) {
                 maxIndex = getMaxIndex(html);
             }
+             */
+            const html = mockPage();
 
             for await (const post of DramamanwayPostUtils.parse(html)) {
                 if (!post) {
@@ -61,11 +65,6 @@ export const useStore = create<StoreState>()((set, get) => ({
             }
             ++index;
         } while (index <= maxIndex);
-        /*
-        for await (const post of parseDramamanwayPost()) {
-            set({ dramamanwayPosts: [...get().dramamanwayPosts, post] });
-        }
-         */
     },
 }));
 
@@ -78,12 +77,19 @@ export const useDramamanwayPostsFetch = () =>
 export const useSortedDramamanwayPosts = () => {
     const posts = useDramamanwayPosts();
     const sort = useTableSort();
+    const compare = (a: DramamanwayPost, b: DramamanwayPost) => {
+        switch (sort.by) {
+            case 'title':
+                return a.info.title.ru.localeCompare(b.info.title.ru);
+            case 'index':
+                return a.index - b.index;
+            default:
+                return a.score[sort.by].value - b.score[sort.by].value;
+        }
+    };
 
     return [...posts].sort((a, b) => {
-        const res =
-            sort.by === 'index'
-                ? a.index - b.index
-                : a.score[sort.by].value - b.score[sort.by].value;
+        const res = compare(a, b);
 
         return sort.order === 'asc' ? res : res * -1;
     });

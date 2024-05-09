@@ -2,7 +2,7 @@ import { DramamanwayPost } from '../types';
 import { clone } from './clone';
 import {
     EMPTY_DRAMAMANWAY_POST,
-    KEYS,
+    SCORE_KEYS,
     DRAMAMANWAY_TEMPLATE,
 } from '../constants';
 import { nanoid } from 'nanoid';
@@ -90,7 +90,7 @@ export class DramamanwayPostUtils {
                         (key) => (parsedPost[key] = groups[key + 'Section'])
                     );
 
-                    KEYS.forEach((key) => {
+                    SCORE_KEYS.forEach((key) => {
                         parsedPost.score[key] = {
                             value: toNumber(groups[key]),
                             comment: (groups[key + 'Comment'] || '').trim(),

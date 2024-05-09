@@ -1,6 +1,6 @@
-import type { DramamanwayPost, ScoreKey } from '../types';
+import type { ColumnKey, DramamanwayPost, ScoreKey } from '../types';
 
-export const KEYS = [
+export const SCORE_KEYS = [
     'plot',
     'dialogues',
     'idea',
@@ -14,7 +14,11 @@ export const KEYS = [
     'finalScore',
 ] as const;
 
-export const KEYS_DESCRIPTION: Record<ScoreKey, string> = {
+export const COLUMN_KEYS = ['index', 'title', ...SCORE_KEYS] as const;
+
+export const KEYS_DESCRIPTION: Record<ColumnKey, string> = {
+    index: 'Индекс',
+    title: 'Название',
     plot: 'Сюжет',
     dialogues: 'Диалоги',
     idea: 'Реализация идеи',
@@ -47,7 +51,7 @@ export const EMPTY_DRAMAMANWAY_POST: DramamanwayPost = {
     feedback: '',
     negativeAspects: '',
     caste: '',
-    score: KEYS.reduce(
+    score: SCORE_KEYS.reduce(
         (acc, next) => ({ ...acc, [next]: { comment: '', value: -1 } }),
         {} as DramamanwayPost['score']
     ),

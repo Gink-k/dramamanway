@@ -1,4 +1,4 @@
-import { KEYS } from '../constants';
+import { SCORE_KEYS } from '../constants';
 import { Score, ScoreKey } from '../types';
 import { round2 } from '../lib';
 import { useDramamanwayPosts } from './page';
@@ -8,17 +8,17 @@ export const useDramamanwayPostsStdScore = () => {
     const posts = useDramamanwayPosts();
 
     return useMemo(() => {
-        const std = KEYS.reduce(
+        const std = SCORE_KEYS.reduce(
             (acc, next) => ({ ...acc, [next]: { value: 0, comment: '' } }),
             {} as Record<ScoreKey, Score>
         );
-        const count = KEYS.reduce(
+        const count = SCORE_KEYS.reduce(
             (acc, next) => ({ ...acc, [next]: 0 }),
             {} as Record<ScoreKey, number>
         );
 
         posts.forEach((p, idx) => {
-            KEYS.forEach((key) => {
+            SCORE_KEYS.forEach((key) => {
                 const { value } = p.score[key];
 
                 if (value >= 0) {

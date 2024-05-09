@@ -1,7 +1,7 @@
 import { create } from 'zustand';
-import { ScoreKey, Sort } from '../../../types';
+import { ColumnKey, Sort } from '../../../types';
 
-export type TableSort = Sort<ScoreKey | 'index'>;
+export type TableSort = Sort<ColumnKey>;
 
 export type TableStoreState = {
     sort: TableSort;

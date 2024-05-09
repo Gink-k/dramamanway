@@ -1,9 +1,14 @@
 import React, { FC } from 'react';
-import { KEYS, KEYS_DESCRIPTION } from '../../../../constants';
+import {
+    SCORE_KEYS,
+    KEYS_DESCRIPTION,
+    COLUMN_KEYS,
+} from '../../../../constants';
 import s from './styles.module.scss';
 import { TableSort, useTableSort, useTableToggleSort } from '../lib';
 import cx from 'classnames';
 import { isNegativeScoreKey } from '../../../../lib';
+import { ScoreKey } from '../../../../types';
 
 type HeaderProps = {};
 
@@ -16,15 +21,12 @@ export const Header: FC<HeaderProps> = ({}) => {
 
     return (
         <div className={s.header}>
-            <div onClick={() => handleClick('index')}>
-                Название {sort.by === 'index' && sort.order}
-            </div>
-            {KEYS.map((key) => (
+            {COLUMN_KEYS.map((key) => (
                 <div
                     key={key}
                     onClick={() => handleClick(key)}
                     className={cx({
-                        [s.negativeCell]: isNegativeScoreKey(key),
+                        [s.negativeCell]: isNegativeScoreKey(key as ScoreKey),
                     })}
                 >
                     {KEYS_DESCRIPTION[key]} {sort.by === key && sort.order}

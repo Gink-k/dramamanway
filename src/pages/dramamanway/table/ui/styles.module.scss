@@ -1,9 +1,11 @@
+$c-divider: #ababab;
+
 .table {
   display: grid;
   grid-auto-flow: column;
   grid-template-rows: 32px auto 32px;
   border-radius: 8px;
-  outline: 1px solid #e2e2e2;
+  outline: 1px solid $c-divider;
   overflow: auto;
   height: 100%;
   box-sizing: border-box;
@@ -20,7 +22,7 @@
   //display: flex;
   //flex-direction: row;
   &:nth-child(odd) {
-      background-color: rgb(161, 232, 255);
+      background-color: rgb(219, 250, 255);
   }
 }
 
@@ -35,7 +37,7 @@
   box-shadow: 0 1px 0 0 #eeeeee;
   background-color: white;
 
-  & > *:first-of-type {
+  & > *:nth-child(1), & > *:nth-child(2) {
     position: sticky;
     left: 0;
     z-index: 1;
@@ -47,7 +49,7 @@
     justify-content: center;
     align-items: center;
     margin: 0;
-    box-shadow: 1px 0 0 0 #eeeeee;
+    box-shadow: 1px 0 0 0 $c-divider, 0 1px 0 0 $c-divider;
     height: 100%;
     padding: 4px;
   }
