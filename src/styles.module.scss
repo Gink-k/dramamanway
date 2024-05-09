@@ -1,0 +1,34 @@
+.app {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  gap: 12px;
+
+  > *:not(.head) {
+    height: calc(100% - 44px);
+  }
+}
+
+.head {
+  display: flex;
+  flex-direction: row;
+}
+
+.logo {
+  margin: 0;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 32px;
+  color: #AAD7D9;
+  font-family: 'Courier New';
+  letter-spacing: -0.3px;
+  position: relative;
+
+  .icon {
+    position: absolute;
+    right: 0;
+    top: -28px;
+  }
+}
