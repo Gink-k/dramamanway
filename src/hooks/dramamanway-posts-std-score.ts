@@ -34,7 +34,6 @@ export const useDramamanwayPostsScoreStats = () => {
                             curr[0] > next ? curr : [next, idx],
                         [0, 0]
                     )[1];
-                    console.log(key, modeValue);
 
                     std[key].value = round2(std[key].value / count[key], 1);
                     mode[key] = { value: modeValue };

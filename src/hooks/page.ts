@@ -39,7 +39,6 @@ export const useStore = create<StoreState>()((set, get) => ({
         let maxIndex = -1;
 
         do {
-            /*
             const response = await fetch(constructURL(OFFSET * index));
 
             if (!response.ok) {
@@ -51,8 +50,9 @@ export const useStore = create<StoreState>()((set, get) => ({
             if (maxIndex === -1) {
                 maxIndex = getMaxIndex(html);
             }
-        */
+            /*
             const html = mockPage();
+        */
 
             for await (const post of DramamanwayPostUtils.parse(html)) {
                 if (!post) {
