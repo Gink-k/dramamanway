@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from 'react';
-import { Row } from './row';
+import { Row } from './row/row';
 import s from './styles.module.scss';
 import {
     useDramamanwayPostsFetch,
@@ -36,7 +36,7 @@ export const Body: FC<BodyProps> = ({}) => {
     return (
         <div className={s.body}>
             {posts.map((p) => (
-                <Row value={p} key={p.id} />
+                <Row value={p} key={p.id} className={s.row} />
             ))}
         </div>
     );

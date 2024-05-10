@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import s from './styles.module.scss';
-import { Row, RowProps } from './row';
+import { Row, RowProps } from './row/row';
 import { useDramamanwayPostsScoreStats } from '../../../../hooks';
 
 type FooterProps = {};
