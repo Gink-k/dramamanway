@@ -28,7 +28,7 @@
     "gh-deploy": "npm run build && git add . && git commit -m 'deploy' && git push origin main &&  git push origin :gh-pages && git subtree push --prefix build origin gh-pages",
     "gh-deploy-init": "git push origin main && git subtree push --prefix build origin gh-pages"
   },
-  "homepage": "https://gink-k.github.io/dramamanway/",
+  "homepage": ".",
   "eslintConfig": {
     "extends": [
       "react-app",
