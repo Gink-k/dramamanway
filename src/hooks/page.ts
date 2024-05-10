@@ -2,10 +2,9 @@ import { create } from 'zustand';
 import { useTableSort } from '../pages/dramamanway/table/lib';
 import { DramamanwayPost } from '../types';
 import { DramamanwayPostUtils, win1251ToUtf8 } from '../lib';
-import { mockPage } from '../lib/mock';
 
 const PUBLIC_URL = 'https://vk.com/wall-222752906';
-const PROXY_URL = 'https://thingproxy.freeboard.io/fetch/'; // 'https://api.allorigins.win/raw?url='
+const PROXY_URL = 'https://thingproxy-6zk3.onrender.com/fetch/'; // 'https://thingproxy.freeboard.io/fetch/'
 const pagesRegex = /<div class="pg_in">(?<maxIndex>\d+)<\/div>/gm;
 
 const constructURL = (offset: number) => {
@@ -25,6 +24,12 @@ const getMaxIndex = (html: string) => {
     return Number.isNaN(page) ? -1 : page;
 };
 
+const getHTML = async (response: Response) => {
+    const buffer = await response.arrayBuffer();
+
+    return win1251ToUtf8(buffer);
+};
+
 const OFFSET = 20;
 
 type StoreState = {
@@ -39,20 +44,17 @@ export const useStore = create<StoreState>()((set, get) => ({
         let maxIndex = -1;
 
         do {
-            const response = await fetch(constructURL(OFFSET * index));
+            const response = await fetch(constructURL(index * OFFSET));
 
             if (!response.ok) {
                 throw new Error('Failed to fetch');
             }
-            const buffer = await response.arrayBuffer();
-            const html = win1251ToUtf8(buffer);
+
+            const html = await getHTML(response); //mockPage();
 
             if (maxIndex === -1) {
                 maxIndex = getMaxIndex(html);
             }
-            /*
-            const html = mockPage();
-        */
 
             for await (const post of DramamanwayPostUtils.parse(html)) {
                 if (!post) {

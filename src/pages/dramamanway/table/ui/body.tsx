@@ -16,7 +16,7 @@ export const Body: FC<BodyProps> = ({}) => {
 
     useEffect(() => {
         setLoading(true);
-        fetch().catch(() => setLoading(false));
+        fetch().finally(() => setLoading(false));
     }, []);
 
     useEffect(() => {
