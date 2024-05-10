@@ -34,7 +34,7 @@ export const Header: FC<HeaderProps> = ({}) => {
                     {sort.by === key && (
                         <TriangleIcons
                             className={cx(s.sort, s[sort.order])}
-                            size={16}
+                            size={12}
                             fill={'#92C7CF'}
                         />
                     )}
