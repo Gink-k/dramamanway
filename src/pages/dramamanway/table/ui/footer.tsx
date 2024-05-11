@@ -9,10 +9,12 @@ const toRowValue = (
     title: string,
     score: RowProps['value']['score']
 ): RowProps['value'] => {
+    const { country, ...restScore } = score as any;
+
     return {
         index: 0,
-        info: { title: { ru: title } },
-        score: score,
+        info: { title: { ru: title }, country: country?.value },
+        score: restScore,
     } as any;
 };
 

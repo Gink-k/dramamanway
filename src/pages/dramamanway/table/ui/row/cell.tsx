@@ -1,6 +1,6 @@
 import React, { FC, ReactNode } from 'react';
 import cx from 'classnames';
-import styles from '../styles.module.scss';
+import styles from './styles.module.scss';
 
 type CellProps = {
     best?: boolean;
@@ -10,15 +10,15 @@ type CellProps = {
 
 export const Cell: FC<CellProps> = ({ className, children, best = false }) => {
     return (
-        <p
+        <div
             className={cx(className, {
                 [styles.bestScore]: best,
             })}
         >
-            <span>
+            <div className={styles.cellInner}>
                 {children}
-                {best && <span className={styles.star}>⭐</span>}
-            </span>
-        </p>
+                {best && <div className={styles.star}>⭐</div>}
+            </div>
+        </div>
     );
 };

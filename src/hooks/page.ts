@@ -2,9 +2,10 @@ import { create } from 'zustand';
 import { useTableSort } from '../pages/dramamanway/table/lib';
 import { DramamanwayPost } from '../types';
 import { DramamanwayPostUtils, win1251ToUtf8 } from '../lib';
+import { mockPage } from '../lib/mock';
 
 const PUBLIC_URL = 'https://vk.com/wall-222752906';
-const PROXY_URL = 'https://thingproxy-6zk3.onrender.com/fetch/'; // 'https://thingproxy.freeboard.io/fetch/'
+const PROXY_URL = 'http://localhost:3000/fetch/'; // 'https://thingproxy.freeboard.io/fetch/'
 const pagesRegex = /<div class="pg_in">(?<maxIndex>\d+)<\/div>/gm;
 
 const constructURL = (offset: number) => {
@@ -85,6 +86,8 @@ export const useSortedDramamanwayPosts = () => {
                 return a.info.title.ru.localeCompare(b.info.title.ru);
             case 'index':
                 return a.index - b.index;
+            case 'county':
+                return a.info.country.localeCompare(b.info.country);
             default:
                 return a.score[sort.by].value - b.score[sort.by].value;
         }

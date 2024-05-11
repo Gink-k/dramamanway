@@ -16,8 +16,9 @@ $c-odd-row: #92C7CF;
   text-shadow: gold 1px 2px 2px;
 }
 
-.scoreValue {
-  position: relative;
+.cellInner {
+  display: flex;
+  flex-direction: row;
 
   & .star {
     position: absolute;
@@ -40,4 +41,25 @@ $c-odd-row: #92C7CF;
 
 .index {
   font-size: 10px;
+  position: relative;
+  line-height: 14px;
+  align-items: flex-start;
+}
+
+.cover {
+  display: flex;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: absolute;
+  width: 80%;
+  left: 50%;
+  bottom: 4px;
+  z-index: -1;
+  transform: translateX(-50%);
+
+  > * {
+    border-radius: 8px;
+    width: 100%;
+  }
 }

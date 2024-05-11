@@ -14,11 +14,12 @@ export const SCORE_KEYS = [
     'finalScore',
 ] as const;
 
-export const COLUMN_KEYS = ['index', 'title', ...SCORE_KEYS] as const;
+export const COLUMN_KEYS = ['index', 'title', 'county', ...SCORE_KEYS] as const;
 
 export const KEYS_DESCRIPTION: Record<ColumnKey, string> = {
     index: '#',
     title: 'Название',
+    county: 'Срана',
     plot: 'Сюжет',
     dialogues: 'Диалоги',
     idea: 'Реализация идеи',
@@ -33,6 +34,8 @@ export const KEYS_DESCRIPTION: Record<ColumnKey, string> = {
 };
 
 export const MAX_SCORE_VALUE = 10;
+
+export const EMPTY_SCORE_VALUE = -1;
 
 export const NEGATIVE_SCORE: ScoreKey[] = ['cliche', 'stupidity', 'tightness'];
 
@@ -52,7 +55,10 @@ export const EMPTY_DRAMAMANWAY_POST: DramamanwayPost = {
     negativeAspects: '',
     caste: '',
     score: SCORE_KEYS.reduce(
-        (acc, next) => ({ ...acc, [next]: { comment: '', value: -1 } }),
+        (acc, next) => ({
+            ...acc,
+            [next]: { comment: '', value: EMPTY_SCORE_VALUE },
+        }),
         {} as DramamanwayPost['score']
     ),
     text: '',
