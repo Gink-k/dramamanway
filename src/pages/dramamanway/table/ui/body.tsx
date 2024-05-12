@@ -16,7 +16,11 @@ export const Body: FC<BodyProps> = ({}) => {
 
     useEffect(() => {
         setLoading(true);
-        fetch().finally(() => setLoading(false));
+        fetch()
+            .catch(() =>
+                alert('Что-то пошло не так, попробуйте перезагрузить страницу')
+            )
+            .finally(() => setLoading(false));
     }, []);
 
     useEffect(() => {
