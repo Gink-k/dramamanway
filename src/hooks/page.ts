@@ -97,14 +97,14 @@ export const useSortedDramamanwayPosts = () => {
     const order = sort.order === 'asc' ? 1 : -1;
 
     const compareTwo = <T extends number | string = number>(v1: T, v2: T) => {
-        if (typeof v1 === 'string') {
-            if (!v1) {
-                return order === -1 ? -1 : 1;
-            }
-            return v1.localeCompare(v2 as string);
+        if (v1 === EMPTY_SCORE_VALUE || v1 === '') {
+            return v1 === v2 ? 0 : order;
         }
-        return v1 === EMPTY_SCORE_VALUE
-            ? order
+        if (v2 === EMPTY_SCORE_VALUE || v2 === '') {
+            return -1 * order;
+        }
+        return typeof v1 === 'string'
+            ? v1.localeCompare(v2 as string)
             : (v1 as number) - (v2 as number);
     };
 
