@@ -19,6 +19,7 @@ $c-odd-row: #92C7CF;
 .cellInner {
   display: flex;
   flex-direction: row;
+  position: relative;
 
   & .star {
     position: absolute;
@@ -29,7 +30,6 @@ $c-odd-row: #92C7CF;
 }
 
 .title {
-  display: block;
   line-height: 24px;
   max-height: 72px;
   text-overflow: ellipsis;
@@ -37,6 +37,8 @@ $c-odd-row: #92C7CF;
   line-break: anywhere;
   font-weight: 600;
   text-align: left;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
 .index {
@@ -44,6 +46,15 @@ $c-odd-row: #92C7CF;
   position: relative;
   line-height: 14px;
   align-items: flex-start;
+
+  > * {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
 }
 
 .cover {
@@ -51,12 +62,8 @@ $c-odd-row: #92C7CF;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  position: absolute;
   width: 80%;
-  left: 50%;
-  bottom: 4px;
   z-index: -1;
-  transform: translateX(-50%);
 
   > * {
     border-radius: 8px;

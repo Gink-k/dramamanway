@@ -29,7 +29,7 @@ const parseImageSrc = (parsedPost: DramamanwayPost, post: HTMLElement) => {
     parsedPost.image.src =
         (
             post.querySelector(
-                'img.PhotoPrimaryAttachment__imageElement'
+                'img.PhotoPrimaryAttachment__imageElement, img.MediaGrid__imageElement'
             ) as HTMLImageElement
         )?.src || '';
 };

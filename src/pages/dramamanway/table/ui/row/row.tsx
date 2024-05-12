@@ -15,10 +15,13 @@ export type RowProps = {
     value: DramamanwayPost;
 };
 
+const EMPTY_VALUE = '-';
+
 export const Row: FC<RowProps> = ({ className, value }) => {
     return (
         <div className={cx(s.row, parentStyles.row, className)}>
             <Cell className={s.index}>
+                {value.index ? `${value.index}. ` : ''}
                 {value.image && (
                     <div
                         className={s.cover}
@@ -27,7 +30,6 @@ export const Row: FC<RowProps> = ({ className, value }) => {
                         <img src={value.image.src} />
                     </div>
                 )}
-                {value.index ? `${value.index}. ` : ''}
             </Cell>
             <Cell
                 className={s.title}
@@ -35,7 +37,7 @@ export const Row: FC<RowProps> = ({ className, value }) => {
             >
                 {value.info.title.ru}
             </Cell>
-            <Cell>{value.info.country || '-'}</Cell>
+            <Cell>{value.info.country || EMPTY_VALUE}</Cell>
             {Object.entries(value.score).map(([key, score]) => (
                 <Cell
                     key={key}
@@ -46,7 +48,7 @@ export const Row: FC<RowProps> = ({ className, value }) => {
                         ),
                     })}
                 >
-                    {isEmptyScore(score) ? -1 : score.value}
+                    {isEmptyScore(score) ? EMPTY_VALUE : score.value}
                 </Cell>
             ))}
         </div>
