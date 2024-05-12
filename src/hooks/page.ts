@@ -17,7 +17,7 @@ const constructURL = (offset: number) => {
     const url = new URL(PUBLIC_URL);
 
     url.searchParams.set('owners_only', '1');
-    url.searchParams.set('q', '[ По пути дорамщика ] #');
+    url.searchParams.set('q', '[ по пути дорамщика ] #dramamanway');
     url.searchParams.set('offset', offset.toString());
 
     return PROXY_URL + encodeURIComponent(url.toString());
