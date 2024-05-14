@@ -8,7 +8,7 @@ import { EMPTY_SCORE_VALUE } from '../constants';
 type ArgsType<T> = T extends (...args: infer A) => any ? A : never;
 
 const PUBLIC_URL = 'https://vk.com/wall-222752906';
-const PROXY_URL = 'https://thingproxy-6zk3.onrender.com/fetch/'; // 'https://thingproxy.freeboard.io/fetch/'
+const PROXY_URL = 'http://localhost:3000/fetch/'; // 'https://thingproxy.freeboard.io/fetch/'
 const PAGES_REGEX = /<div class="pg_in">(?<maxIndex>\d+)<\/div>/gm;
 const USER_AGENT =
     'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36';
@@ -59,13 +59,14 @@ export const useStore = create<StoreState>()((set, get) => ({
         let maxIndex = -1;
 
         do {
+            /*
             const response = await fetch(...getFetchArgs(index));
 
             if (!response.ok) {
                 throw new Error('Failed to fetch');
             }
-
-            const html = await getHTML(response); //mockPage();
+             */
+            const html = mockPage(); //await getHTML(response); //mockPage();
 
             if (maxIndex === -1) {
                 maxIndex = getMaxIndex(html);

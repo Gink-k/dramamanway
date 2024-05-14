@@ -3,6 +3,7 @@ import s from './styles.module.scss';
 import { Header } from './header';
 import { Footer } from './footer';
 import { Body } from './body';
+import { PostModal } from './post-modal';
 
 type TableProps = {};
 
@@ -12,6 +13,7 @@ export const Table: FC<TableProps> = ({}) => {
             <Header />
             <Body />
             <Footer />
+            <PostModal />
         </div>
     );
 };

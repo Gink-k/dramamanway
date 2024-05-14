@@ -9,6 +9,7 @@ import {
 } from '../../../../../lib';
 import { Cell } from './cell';
 import cx from 'classnames';
+import { useTableOpenedPost, useTableOpenPost } from '../../lib';
 
 export type RowProps = {
     className?: string;
@@ -18,8 +19,13 @@ export type RowProps = {
 const EMPTY_VALUE = '-';
 
 export const Row: FC<RowProps> = ({ className, value }) => {
+    const openPost = useTableOpenPost();
+
     return (
-        <div className={cx(s.row, parentStyles.row, className)}>
+        <div
+            className={cx(s.row, parentStyles.row, className)}
+            onClick={() => openPost(value)}
+        >
             <Cell className={s.index}>
                 {value.index ? `${value.index}. ` : ''}
                 {value.image && (

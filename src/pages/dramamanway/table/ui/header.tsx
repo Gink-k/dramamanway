@@ -1,15 +1,11 @@
 import React, { FC } from 'react';
-import {
-    SCORE_KEYS,
-    KEYS_DESCRIPTION,
-    COLUMN_KEYS,
-} from '../../../../constants';
+import { COLUMN_KEYS, KEYS_DESCRIPTION } from '../../../../constants';
 import s from './styles.module.scss';
 import { TableSort, useTableSort, useTableToggleSort } from '../lib';
 import cx from 'classnames';
 import { isNegativeScoreKey } from '../../../../lib';
 import { ScoreKey } from '../../../../types';
-import { TriangleIcons } from '../../../../ui/icons';
+import { TriangleIcons } from '../../../../ui';
 
 type HeaderProps = {};
 
