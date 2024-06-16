@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { Modal } from '../../../../../ui/modal';
 import { useTableClosePost, useTableOpenedPost } from '../../lib';
 import s from './styles.module.scss';
+import { Section } from './section';
 
 type PostModalProps = {};
 
@@ -95,17 +96,18 @@ export const PostModal: FC<PostModalProps> = ({}) => {
                         <img src={post?.image.src} />
                     </div>
                     <div className={s.infoAndFeedback}>
-                        <p className={s.title}>
-                            <span>{post?.info.title.ru}</span>
-                            <span>{post?.info.title.eng}</span>
-                            <span>{post?.info.title.original}</span>
-                        </p>
-                        <p></p>
-                        <p
-                            dangerouslySetInnerHTML={{
-                                __html: post?.feedback || '',
-                            }}
-                        ></p>
+                        <div className={s.header}>
+                            <p className={s.title}>
+                                <span>{post?.info.title.ru}</span>
+                                <span>{post?.info.title.eng}</span>
+                                <span>{post?.info.title.original}</span>
+                            </p>
+                        </div>
+                        <Section>{post?.about}</Section>
+                        <Section>{post?.idea}</Section>
+                        <Section>{post?.feedback}</Section>
+                        <Section>{post?.negativeAspects}</Section>
+                        <Section>{post?.recommendation}</Section>
                     </div>
                 </div>
             </div>
