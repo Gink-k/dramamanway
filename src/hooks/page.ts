@@ -2,7 +2,6 @@ import { create } from 'zustand';
 import { useTableSort } from '../pages/dramamanway/table/lib';
 import { DramamanwayPost } from '../types';
 import { DramamanwayPostUtils, win1251ToUtf8 } from '../lib';
-import { mockPage } from '../lib/mock';
 import { EMPTY_SCORE_VALUE } from '../constants';
 
 type ArgsType<T> = T extends (...args: infer A) => any ? A : never;
@@ -59,27 +58,23 @@ export const useStore = create<StoreState>()((set, get) => ({
         let maxIndex = -1;
 
         do {
-            /*
             const response = await fetch(...getFetchArgs(index));
 
             if (!response.ok) {
                 throw new Error('Failed to fetch');
             }
-             */
-            const html = mockPage(); //await getHTML(response); //mockPage();
+            const html = await getHTML(response); //mockPage();
 
             if (maxIndex === -1) {
                 maxIndex = getMaxIndex(html);
             }
 
             for await (const post of DramamanwayPostUtils.parse(html)) {
-                if (!post) {
-                    return;
+                if (post) {
+                    set({
+                        dramamanwayPosts: [...get().dramamanwayPosts, post],
+                    });
                 }
-
-                set({
-                    dramamanwayPosts: [...get().dramamanwayPosts, post],
-                });
             }
             ++index;
         } while (index <= maxIndex);

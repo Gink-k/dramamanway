@@ -3,7 +3,7 @@ import s from './styles.module.scss';
 import { Header } from './header';
 import { Footer } from './footer';
 import { Body } from './body';
-import { PostModal } from './post-modal';
+import { PostModal } from './post/post-modal';
 
 type TableProps = {};
 
