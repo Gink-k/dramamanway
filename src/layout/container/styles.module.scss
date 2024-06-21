@@ -1,0 +1,12 @@
+.app {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  gap: 12px;
+
+  > *:not(:first-child) {
+    height: calc(100% - 44px);
+  }
+}
