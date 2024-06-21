@@ -18,7 +18,7 @@ export const PostModal: FC<PostModalProps> = ({}) => {
         <Modal open={!!post} size={'large'} onClose={closePost}>
             <div className={s.container}>
                 <div className={s.top}>
-                    <div>
+                    <div className={s.aside}>
                         <div className={s.cover}>
                             <img src={post?.image.src} alt={'обложка'} />
                         </div>

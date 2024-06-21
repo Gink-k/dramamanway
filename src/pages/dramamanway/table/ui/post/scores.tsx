@@ -5,6 +5,7 @@ import {
     MAX_SCORE_VALUE,
     SCORE_KEYS,
 } from '../../../../../constants';
+import s from './styles.module.scss';
 
 type ScoresProps = {
     post: DramamanwayPost;
@@ -12,11 +13,15 @@ type ScoresProps = {
 
 export const Scores: FC<ScoresProps> = ({ post }) => {
     return (
-        <div>
+        <div className={s.scores}>
+            <p className={s.title}>Оценки:</p>
             {SCORE_KEYS.map((key) => (
-                <div key={key}>
-                    {`${KEYS_DESCRIPTION[key]}: ${post.score[key].value} из ${MAX_SCORE_VALUE}`}
-                </div>
+                <p key={key} className={s.score}>
+                    <span className={s.label}>{KEYS_DESCRIPTION[key]}: </span>
+                    <span className={s.value}>
+                        {post.score[key].value} из {MAX_SCORE_VALUE}
+                    </span>
+                </p>
             ))}
         </div>
     );

@@ -60,3 +60,43 @@
     border-right: 1px solid #e5e1da;
   }
 }
+
+.aside {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.scores {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border: 4px solid #92C7CF;
+  padding: 8px;
+  border-radius: 8px;
+
+  .title {
+    font-size: 18px;
+    line-height: 24px;
+    margin-bottom: 4px;
+    font-weight: bolder;
+    background: orange;
+    border-radius: 8px;
+    color: white;
+    padding: 4px 16px;
+    width: fit-content;
+    margin-left: -2px;
+  }
+
+  .score {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    .label {
+      font-weight: bold;
+    }
+    .value {
+      white-space: nowrap;
+    }
+  }
+}
