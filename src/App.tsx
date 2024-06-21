@@ -3,6 +3,7 @@ import './styles.module.scss';
 import Dramamanway from './pages/dramamanway';
 import s from './styles.module.scss';
 import { CatLogo } from './ui/icons';
+
 function App() {
     return (
         <div className={s.app}>

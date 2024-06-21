@@ -23,7 +23,7 @@ export const Modal: FC<ModalProps> = ({
 
     return createPortal(
         <div onClick={onClose} className={s.wrapper}>
-            <div className={cx(s.container, s[size])}>
+            <div className={cx(s.container, s[size])} onClick={(e) => e.stopPropagation()}>
                 <CrossIcon className={s.crossIcon} size={12} fill={'gray'} />
                 {children}
             </div>

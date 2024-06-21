@@ -65,3 +65,22 @@ export const EMPTY_DRAMAMANWAY_POST: DramamanwayPost = {
     recommendation: '',
     nextPostTitle: '',
 };
+
+export const SECTIONS = [
+    { key: 'about', description: 'О чём?', icon: '💬', color: '' },
+    { key: 'idea', description: 'Идея', icon: '✨', color: '' },
+    { key: 'feedback', description: 'Впечатления', icon: '🙀', color: '' },
+    {
+        key: 'negativeAspects',
+        description: 'Что не понравилось?',
+        icon: '🚫',
+        color: '',
+    },
+    { key: 'caste', description: 'Каст', icon: '👫', color: '' },
+    {
+        key: 'recommendation',
+        description: 'Рекомендация к просмотру',
+        icon: '📺',
+        color: '',
+    },
+] as const;

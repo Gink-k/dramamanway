@@ -1,4 +1,4 @@
-import { MAX_SCORE_VALUE, SCORE_KEYS } from '../constants';
+import { SCORE_KEYS } from '../constants';
 import { Score, ScoreKey } from '../types';
 import { round2 } from '../lib';
 import { useDramamanwayPosts } from './page';

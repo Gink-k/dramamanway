@@ -10,6 +10,7 @@ type TableProps = {};
 export const Table: FC<TableProps> = ({}) => {
     return (
         <div className={s.table}>
+
             <Header />
             <Body />
             <Footer />

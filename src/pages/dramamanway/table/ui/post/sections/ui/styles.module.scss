@@ -1,0 +1,35 @@
+
+.sections {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 8px 0;
+  overflow: auto;
+  height: calc(100% - 23px);
+}
+
+.sectionsNav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  > * {
+    border-radius: 8px;
+    opacity: 0.5;
+    background-color: aquamarine;
+    padding: 4px 8px;
+    cursor: pointer;
+  }
+
+  .active {
+    opacity: 1;
+  }
+}
+
+.sectionTitle {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
