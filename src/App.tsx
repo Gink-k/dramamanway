@@ -1,11 +1,13 @@
 import React from 'react';
 import Dramamanway from './pages/dramamanway';
-import { Container, Header } from './layout';
+import { Container, Header, Menu } from './layout';
 
 function App() {
     return (
         <Container>
-            <Header />
+            <Header>
+                <Menu />
+            </Header>
             <Dramamanway />
         </Container>
     );
