@@ -1,6 +1,6 @@
 import React, { HTMLProps } from 'react';
 import cx from 'classnames';
-import styles from './styles.modules.scss';
+import s from './styles.module.scss';
 
 export interface ITextField {
     onChange?: (text: string) => void;
@@ -49,7 +49,7 @@ const TextField: React.ForwardRefExoticComponent<
             }
         };
         const innerProps = {
-            className: cx(styles.textField, { [styles.error]: invalid }),
+            className: cx(s.textField, { [s.error]: invalid }),
             value,
             ...props,
         };
@@ -59,11 +59,11 @@ const TextField: React.ForwardRefExoticComponent<
 
         return (
             <div
-                className={cx(styles.wrapperTextField, className)}
+                className={cx(s.wrapperTextField, className)}
                 onKeyDown={handleKeyDown}
                 onKeyUp={onKeyUp}
             >
-                {label && <div className={styles.label}>{label}</div>}
+                {label && <div className={s.label}>{label}</div>}
                 {multiline ? (
                     <textarea
                         onFocus={onFocus}
@@ -79,7 +79,7 @@ const TextField: React.ForwardRefExoticComponent<
                         {...innerProps}
                     />
                 )}
-                {invalid && <p className={styles.errorMsg}>{error}</p>}
+                {invalid && <p className={s.errorMsg}>{error}</p>}
             </div>
         );
     }

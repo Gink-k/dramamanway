@@ -8,7 +8,8 @@ type ModalProps = {
     open?: boolean;
     children: ReactNode;
     onClose?: () => void;
-    size?: 'small' | 'standard' | 'large';
+    size?: 'small' | 'standard' | 'large' | 'xxl';
+    hasBackground?: boolean;
 };
 
 export const Modal: FC<ModalProps> = ({
@@ -16,6 +17,7 @@ export const Modal: FC<ModalProps> = ({
     children,
     onClose,
     size = 'standard',
+    hasBackground = true,
 }) => {
     if (!open) {
         return null;
@@ -23,8 +25,20 @@ export const Modal: FC<ModalProps> = ({
 
     return createPortal(
         <div onClick={onClose} className={s.wrapper}>
-            <div className={cx(s.container, s[size])} onClick={(e) => e.stopPropagation()}>
-                <CrossIcon className={s.crossIcon} size={12} fill={'gray'} />
+            <div
+                className={cx(
+                    s.container,
+                    s[size],
+                    hasBackground && s.withBackground
+                )}
+                onClick={(e) => e.stopPropagation()}
+            >
+                <CrossIcon
+                    className={s.crossIcon}
+                    size={12}
+                    fill={'gray'}
+                    onClick={onClose}
+                />
                 {children}
             </div>
         </div>,

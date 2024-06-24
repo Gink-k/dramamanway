@@ -6,16 +6,20 @@ export type ScoreKey = (typeof SCORE_KEYS)[number];
 
 export type ColumnKey = (typeof COLUMN_KEYS)[number];
 
+export type TitleKey = 'ru' | 'eng' | 'original';
+
+export type DramamanwayPostInfo = {
+    title: Record<TitleKey, string>;
+    country: string;
+    year: number;
+    episodesNumber: number;
+};
+
 export type DramamanwayPost = {
     id: string;
     index: number;
     image: { src: string; bgSrc: string };
-    info: {
-        title: Record<'ru' | 'eng' | 'original', string>;
-        country: string;
-        year: number;
-        episodesNumber: number;
-    };
+    info: DramamanwayPostInfo;
     about: string;
     idea: string;
     feedback: string;

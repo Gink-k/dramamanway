@@ -66,6 +66,8 @@ export const EMPTY_DRAMAMANWAY_POST: DramamanwayPost = {
     nextPostTitle: '',
 };
 
+export const LOCALES = ['ru', 'eng', 'original'] as const;
+
 export const SECTIONS = [
     { key: 'about', description: 'О чём?', icon: '💬', color: '' },
     { key: 'idea', description: 'Идея', icon: '✨', color: '' },
@@ -84,3 +86,5 @@ export const SECTIONS = [
         color: '',
     },
 ] as const;
+
+export const DEFAULT_TAGS = ['dramamanway', 'drama', 'дорама'];
