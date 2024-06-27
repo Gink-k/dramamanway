@@ -21,7 +21,7 @@ const SectionsBase: FC<SectionsProps> = ({ post }) => {
                     scrollIntoView={key === section}
                     title={description + icon}
                 >
-                    {post[key]}
+                    {key === 'caste' ? post[key].raw : post[key]}
                 </Section>
             ))}
         </div>

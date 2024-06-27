@@ -1,0 +1,124 @@
+.createModalContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  height: 100%;
+  --height: 70px;
+
+  > * {
+    width: 100%;
+
+    textarea {
+      flex-grow: 1;
+      font-size: 16px;
+      line-height: 24px;
+      height: var(--height);
+    }
+  }
+}
+
+.main {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  gap: 8px;
+}
+
+.aside {
+
+}
+
+.sections, .titles, .caste {
+  background: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+}
+
+.titles {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  background: #0099ff;
+  color: white;
+
+  > * {
+    flex: 1;
+
+    > div {
+      font-weight: bold;
+    }
+  }
+  input {
+    padding: 6px 12px;
+  }
+}
+
+.sections {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  overflow: auto;
+  flex-wrap: wrap;
+  position: relative;
+  flex-grow: 1;
+
+  > * {
+    width: 100%;
+  }
+}
+
+.about, .idea {
+  width: calc(50% - 4px);
+}
+
+.feedback {
+  --height: 500px;
+}
+
+.negativeAspects {
+  --height: 500px;
+}
+
+
+.tags {
+  position: sticky;
+  display: flex;
+  flex-direction: row;
+  bottom: -8px;
+  left: -8px;
+  box-shadow: 0px -2px 2px 1px rgba(0,0,0,0.2);
+  padding: 12px;
+  width: fit-content;
+  gap: 4px;
+  margin-bottom: -8px;
+  background: #0099ff;
+  color: white;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  font-weight: bold;
+
+  >*:before {
+    content: '#';
+  }
+}
+
+.caste {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.casteFields {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 8px;
+
+  > * {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+  }
+}

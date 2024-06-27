@@ -1,13 +1,16 @@
-import { DramamanwayPost } from '../types';
+import { CasteUnit, DramamanwayPost } from '../types';
 import { clone } from './clone';
 import {
+    DRAMAMANWAY_TEMPLATE,
+    EMPTY_CAST_UNIT,
     EMPTY_DRAMAMANWAY_POST,
     SCORE_KEYS,
-    DRAMAMANWAY_TEMPLATE,
+    SECTIONS,
 } from '../constants';
 import { nanoid } from 'nanoid';
 import { mockPage } from './mock';
 import { toNumber } from './to-number';
+import Notice from '../ui/notice';
 
 const getWallInnerHtml = (post: HTMLElement) => {
     const wall = post.querySelector('.wall_post_text');
@@ -34,19 +37,36 @@ const parseImageSrc = (parsedPost: DramamanwayPost, post: HTMLElement) => {
         )?.src || '';
 };
 
+// @TODO
+const parseCasteUnits = (caste: string): CasteUnit[] => {
+    const lines = caste.split('\n');
+    const res: CasteUnit[] = [];
+
+    return res;
+};
+
 const TEXT_SECTIONS: (keyof DramamanwayPost)[] = [
     'about',
     'idea',
     'feedback',
     'negativeAspects',
-    'caste',
     'recommendation',
 ];
 
+const LOCALSTORAGE_KEY = 'new-dramamanway-post';
+
 export class DramamanwayPostUtils {
+    static getEmptyCasteUnit() {
+        return clone(EMPTY_CAST_UNIT);
+    }
+
     static getEmpty(): DramamanwayPost {
         const empty = clone(EMPTY_DRAMAMANWAY_POST);
 
+        empty.caste.units = [
+            DramamanwayPostUtils.getEmptyCasteUnit(),
+            DramamanwayPostUtils.getEmptyCasteUnit(),
+        ];
         empty.id = nanoid();
         return empty;
     }
@@ -89,6 +109,10 @@ export class DramamanwayPostUtils {
                         // @ts-ignore
                         (key) => (parsedPost[key] = groups[key + 'Section'])
                     );
+                    parsedPost.caste.raw = groups.casteSection;
+                    parsedPost.caste.units = parseCasteUnits(
+                        parsedPost.caste.raw || ''
+                    );
 
                     SCORE_KEYS.forEach((key) => {
                         parsedPost.score[key] = {
@@ -104,5 +128,25 @@ export class DramamanwayPostUtils {
                 }, 10 * i)
             );
         }
+    }
+
+    static saveToStorage(post: DramamanwayPost) {
+        localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(post));
+    }
+
+    static getFromStorage = (): DramamanwayPost => {
+        let post: DramamanwayPost | null = null;
+
+        try {
+            post = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY) || '');
+        } catch (_) {
+            Notice.error('Failed to get post from LocalStorage');
+        }
+
+        return post ?? DramamanwayPostUtils.getEmpty();
+    };
+
+    static getSectionConfig(key: keyof DramamanwayPost) {
+        return SECTIONS.find((section) => section.key === key);
     }
 }

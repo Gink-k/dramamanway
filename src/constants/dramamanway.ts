@@ -1,4 +1,4 @@
-import type { ColumnKey, DramamanwayPost, ScoreKey } from '../types';
+import type { CasteUnit, ColumnKey, DramamanwayPost, ScoreKey } from '../types';
 
 export const SCORE_KEYS = [
     'plot',
@@ -39,6 +39,12 @@ export const EMPTY_SCORE_VALUE = -1;
 
 export const NEGATIVE_SCORE: ScoreKey[] = ['cliche', 'stupidity', 'tightness'];
 
+export const EMPTY_CAST_UNIT: CasteUnit = {
+    actor: { ru: '', eng: '' },
+    character: '',
+    comment: '',
+};
+
 export const EMPTY_DRAMAMANWAY_POST: DramamanwayPost = {
     id: '',
     index: -1,
@@ -53,7 +59,7 @@ export const EMPTY_DRAMAMANWAY_POST: DramamanwayPost = {
     idea: '',
     feedback: '',
     negativeAspects: '',
-    caste: '',
+    caste: { units: [], raw: '' },
     score: SCORE_KEYS.reduce(
         (acc, next) => ({
             ...acc,
@@ -78,7 +84,7 @@ export const SECTIONS = [
         icon: '🚫',
         color: '',
     },
-    { key: 'caste', description: 'Каст', icon: '👫', color: '' },
+    { key: 'caste', description: 'Каст', icon: '👫', color: '#f1f100' },
     {
         key: 'recommendation',
         description: 'Рекомендация к просмотру',

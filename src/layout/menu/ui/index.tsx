@@ -1,22 +1,19 @@
 import { FC, useState } from 'react';
-import { Button, Modal } from '../../../ui';
-import { CreateModalContent } from './create-modal-content';
+import { Button } from '../../../ui';
+import { CreateModal } from './create-dramamanway-post-modal';
 
 export const Menu: FC = () => {
     const [createPostIsOpen, setCreatePostIsOpen] = useState(true);
+
     return (
         <div>
             <Button onClick={() => setCreatePostIsOpen(true)}>
                 Создать пост
             </Button>
-            <Modal
-                size={'xxl'}
-                hasBackground={false}
+            <CreateModal
                 open={createPostIsOpen}
                 onClose={() => setCreatePostIsOpen(false)}
-            >
-                <CreateModalContent />
-            </Modal>
+            />
         </div>
     );
 };

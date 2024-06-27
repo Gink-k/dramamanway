@@ -4,7 +4,7 @@ import { createPortal } from 'react-dom';
 import cx from 'classnames';
 import { CrossIcon } from '../icons';
 
-type ModalProps = {
+export type ModalProps = {
     open?: boolean;
     children: ReactNode;
     onClose?: () => void;

@@ -15,6 +15,17 @@ export type DramamanwayPostInfo = {
     episodesNumber: number;
 };
 
+export type CasteUnit = {
+    actor: { ru: string; eng: string };
+    character: string;
+    comment: string;
+};
+
+export type Caste = {
+    units: CasteUnit[];
+    raw: string;
+};
+
 export type DramamanwayPost = {
     id: string;
     index: number;
@@ -24,7 +35,7 @@ export type DramamanwayPost = {
     idea: string;
     feedback: string;
     negativeAspects: string;
-    caste: string;
+    caste: Caste;
     score: Record<ScoreKey, Score>;
     text: string;
     recommendation: string;
