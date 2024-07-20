@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import TextField from '../../../../../ui/text-field';
 import { CasteUnit } from '../../../../../types';
+import { Button } from '../../../../../ui';
 
 export type CasteFieldProps = {
     value: CasteUnit;
@@ -8,9 +9,14 @@ export type CasteFieldProps = {
         key: keyof CasteUnit,
         casteUnitValue: CasteUnit[keyof CasteUnit]
     ) => void;
+    onDelete: () => void;
 };
 
-export const CasteField: FC<CasteFieldProps> = ({ value, onChange }) => {
+export const CasteField: FC<CasteFieldProps> = ({
+    value,
+    onChange,
+    onDelete,
+}) => {
     return (
         <div>
             <TextField
@@ -41,6 +47,7 @@ export const CasteField: FC<CasteFieldProps> = ({ value, onChange }) => {
                 placeholder={'Персонаж'}
                 onChange={(character) => onChange('character', character)}
             />
+            <Button onClick={onDelete}>Удалить</Button>
         </div>
     );
 };

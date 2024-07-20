@@ -31,6 +31,13 @@ export const Caste: FC<CasteProps> = ({ value, onChange }) => {
             units: [...value.units, DramamanwayPostUtils.getEmptyCasteUnit()],
         });
 
+    const deleteCasteUnit = (idx: number) => {
+        const newValueUnits = [...value.units];
+
+        newValueUnits.splice(idx, 1);
+        onChange({ ...value, units: newValueUnits });
+    };
+
     return (
         <div
             className={s.caste}
@@ -55,6 +62,7 @@ export const Caste: FC<CasteProps> = ({ value, onChange }) => {
                             key={idx}
                             value={casteUnit}
                             onChange={updateCaste.bind(null, idx)}
+                            onDelete={deleteCasteUnit.bind(null, idx)}
                         />
                     ))
                 }

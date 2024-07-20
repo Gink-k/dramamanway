@@ -13,6 +13,7 @@ import s from './styles.module.scss';
 import { Caste } from './caste';
 import { Score } from './score';
 import { Footer } from './footer';
+import cx from 'classnames';
 
 type CreateModalContentProps = {};
 
@@ -75,30 +76,81 @@ export const CreateModalContent: FC<CreateModalContentProps> = ({}) => {
                 ))}
             </div>
             <div className={s.main}>
-                <div className={s.aside}>
-                    <Caste
-                        value={dramamanwayPost.caste}
-                        onChange={(caste) =>
-                            updateDramamanwayPost('caste', caste)
-                        }
-                    />
-                    <div className={s.twoFields}>
-                        <TextField {...getStandardProps('about')} />
-                        <TextField {...getStandardProps('idea')} />
+                <div className={s.horizontalContainer}>
+                    <div className={cx(s.sections, s.aside)}>
+                        <div>
+                            <div className={s.restInfo}>
+                                <TextField
+                                    type={'number'}
+                                    placeholder={'Введи индекс'}
+                                    label={`Индекс`}
+                                    value={dramamanwayPost.index.toString()}
+                                    onChange={(text) =>
+                                        updateDramamanwayPost(
+                                            'index',
+                                            Number(text)
+                                        )
+                                    }
+                                />
+                                <TextField
+                                    placeholder={'Введи страну'}
+                                    label={`Страна`}
+                                    value={dramamanwayPost.info.country}
+                                    onChange={(text) =>
+                                        updateInfo('country', text)
+                                    }
+                                />
+                                <TextField
+                                    type={'number'}
+                                    placeholder={'Введи количество серий'}
+                                    label={`Количество серий`}
+                                    value={dramamanwayPost.info.episodesNumber.toString()}
+                                    onChange={(text) =>
+                                        updateInfo(
+                                            'episodesNumber',
+                                            Number(text)
+                                        )
+                                    }
+                                />
+                                <TextField
+                                    placeholder={'Введи следующую дораму'}
+                                    label={`Название следующей дорамы`}
+                                    value={dramamanwayPost.nextPostTitle}
+                                    onChange={(text) =>
+                                        updateDramamanwayPost(
+                                            'nextPostTitle',
+                                            text
+                                        )
+                                    }
+                                />
+                            </div>
+                        </div>
+                        <Caste
+                            value={dramamanwayPost.caste}
+                            onChange={(caste) =>
+                                updateDramamanwayPost('caste', caste)
+                            }
+                        />
+                        <div className={s.twoFields}>
+                            <TextField {...getStandardProps('about')} />
+                            <TextField {...getStandardProps('idea')} />
+                        </div>
+                        <Score
+                            score={dramamanwayPost.score}
+                            onChange={(score) =>
+                                updateDramamanwayPost('score', score)
+                            }
+                        />
+                        <TextField {...getStandardProps('recommendation')} />
                     </div>
-                    <Score
-                        score={dramamanwayPost.score}
-                        onChange={(score) =>
-                            updateDramamanwayPost('score', score)
-                        }
-                    />
-                    <TextField {...getStandardProps('recommendation')} />
+                    <div className={s.sections}>
+                        <TextField {...getStandardProps('feedback')} />
+                    </div>
+                    <div className={s.sections}>
+                        <TextField {...getStandardProps('negativeAspects')} />
+                    </div>
                 </div>
-                <div className={s.sections}>
-                    <TextField {...getStandardProps('feedback')} />
-                    <TextField {...getStandardProps('negativeAspects')} />
-                    <Footer dramamanwayPost={dramamanwayPost} />
-                </div>
+                <Footer dramamanwayPost={dramamanwayPost} />
             </div>
         </div>
     );
