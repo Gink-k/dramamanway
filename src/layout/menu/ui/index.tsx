@@ -3,7 +3,7 @@ import { Button } from '../../../ui';
 import { CreateModal } from './create-dramamanway-post-modal';
 
 export const Menu: FC = () => {
-    const [createPostIsOpen, setCreatePostIsOpen] = useState(true);
+    const [createPostIsOpen, setCreatePostIsOpen] = useState(false);
 
     return (
         <div>
