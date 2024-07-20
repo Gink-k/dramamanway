@@ -1,2 +1,2 @@
 export * from './dramamanway';
-export * from './dramamanway-template';
+export * from './dramamanway-parse-template';

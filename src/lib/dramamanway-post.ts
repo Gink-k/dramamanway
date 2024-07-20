@@ -1,7 +1,9 @@
-import { CasteUnit, DramamanwayPost } from '../types';
+import { CasteUnit, DramamanwayPost, ScoreKey } from '../types';
 import { clone } from './clone';
 import {
-    DRAMAMANWAY_TEMPLATE,
+    COLUMN_DESCRIPTION,
+    DEFAULT_TAGS,
+    DRAMAMANWAY_PARSE_TEMPLATE,
     EMPTY_CAST_UNIT,
     EMPTY_DRAMAMANWAY_POST,
     SCORE_KEYS,
@@ -11,6 +13,8 @@ import { nanoid } from 'nanoid';
 import { mockPage } from './mock';
 import { toNumber } from './to-number';
 import Notice from '../ui/notice';
+import { getNoun } from './get-noun';
+import { capitalize } from './capitalize';
 
 const getWallInnerHtml = (post: HTMLElement) => {
     const wall = post.querySelector('.wall_post_text');
@@ -44,6 +48,8 @@ const parseCasteUnits = (caste: string): CasteUnit[] => {
 
     return res;
 };
+
+const joinTitle = (title: string) => title.split(' ').map(capitalize).join('');
 
 const TEXT_SECTIONS: (keyof DramamanwayPost)[] = [
     'about',
@@ -92,7 +98,7 @@ export class DramamanwayPostUtils {
                         return resolve(null);
                     }
                     const { groups = {} } =
-                        wallText.match(DRAMAMANWAY_TEMPLATE) || {};
+                        wallText.match(DRAMAMANWAY_PARSE_TEMPLATE) || {};
 
                     parsedPost.info = {
                         title: {
@@ -148,5 +154,77 @@ export class DramamanwayPostUtils {
 
     static getSectionConfig(key: keyof DramamanwayPost) {
         return SECTIONS.find((section) => section.key === key);
+    }
+
+    static getTags(post: DramamanwayPost): string[] {
+        const tags: string[] = [
+            ...DEFAULT_TAGS,
+            joinTitle(post.info.title.ru),
+            joinTitle(post.info.title.eng),
+        ];
+
+        post.caste.units.forEach((casteUnit) =>
+            tags.push(
+                joinTitle(casteUnit.actor.ru),
+                joinTitle(casteUnit.actor.eng)
+            )
+        );
+
+        return tags.map((tag) => '#' + tag);
+    }
+
+    static getRawCaste(post: DramamanwayPost): string {
+        return (
+            post.caste.raw ||
+            post.caste.units.reduce(
+                (acc, caste) =>
+                    acc +
+                    `${caste.actor.ru} (${caste.actor.eng}) - играет персонажа ${caste.character}. ${caste.comment}`,
+                ''
+            )
+        );
+    }
+
+    static toDefaultPostString(post: DramamanwayPost): string {
+        const getScore = (key: ScoreKey) =>
+            `* ${COLUMN_DESCRIPTION[key]}: ${post.score[key].value} из 10${post.score[key].comment ? `(${post.score[key].comment})` : ''}`;
+
+        return `[ По пути дорамщика ] #${post.index}
+
+${post.info.title.ru} | ${post.info.title.eng} | ${post.info.title.original}
+
+${post.info.year} год - ${post.info.episodesNumber} ${getNoun(post.info.episodesNumber, 'эпизод', 'эпизода', 'эпизодов')}
+
+=== О чем 💬 ===:
+${post.about}
+=== Идея ✨ ===:
+${post.idea}
+=== Впечатления 🙀 ===:
+${post.feedback}
+=== Что не понравилось? 🚫 ===:
+${post.negativeAspects}
+=== Каст 👫 ===:
+${DramamanwayPostUtils.getRawCaste(post)}
+=== Оценки 💯 ===:
+${getScore('plot')}
+${getScore('dialogues')}
+${getScore('idea')}
+${getScore('soundtrack')}
+${getScore('sufficiency')}
+${getScore('caste')}
+${getScore('rewatchingChance')}
+-----
+${getScore('cliche')}
+${getScore('stupidity')}
+${getScore('tightness')}
+-----
+${getScore('finalScore')}
+
+=== Рекомендация к просмотру 📺 ===:
+${post.recommendation}
+=== Следующая остановка "${post.nextPostTitle}" 🚌 ===
+
+${DramamanwayPostUtils.getTags(post)}
+`;
     }
 }

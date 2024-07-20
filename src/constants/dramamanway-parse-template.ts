@@ -1,4 +1,4 @@
-export const DRAMAMANWAY_TEMPLATE = new RegExp(
+export const DRAMAMANWAY_PARSE_TEMPLATE = new RegExp(
     `\\[ По пути дорамщика ] #(?<index>\\d\\d?)\\s*
 
 (?<titleRu>.+) [\\|\\/] (?<titleEng>.+) [\\|\\/] (?<titleOriginal>.+)

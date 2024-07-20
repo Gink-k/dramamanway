@@ -5,3 +5,4 @@ export * from './score';
 export * from './to-number';
 export * from './capitalize';
 export * from './copy-text-to-clipboard';
+export * from './get-noun';

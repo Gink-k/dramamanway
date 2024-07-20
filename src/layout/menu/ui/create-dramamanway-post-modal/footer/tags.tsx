@@ -1,10 +1,7 @@
-import { FC, Fragment } from 'react';
-import { DEFAULT_TAGS } from '../../../../../constants';
+import { FC } from 'react';
 import { DramamanwayPost } from '../../../../../types';
-import { capitalize } from '../../../../../lib';
+import { DramamanwayPostUtils } from '../../../../../lib';
 import s from './styles.module.scss';
-
-const joinTitle = (title: string) => title.split(' ').map(capitalize).join('');
 
 type TagsProps = {
     post: DramamanwayPost;
@@ -13,16 +10,8 @@ type TagsProps = {
 export const Tags: FC<TagsProps> = ({ post }) => {
     return (
         <div className={s.tags}>
-            {DEFAULT_TAGS.map((tag) => (
-                <p key={tag}>{tag}</p>
-            ))}
-            <p>{joinTitle(post.info.title.ru)}</p>
-            <p>{joinTitle(post.info.title.eng)}</p>
-            {post.caste.units.map((casteUnit, idx) => (
-                <Fragment key={idx}>
-                    <p>{joinTitle(casteUnit.actor.ru)}</p>
-                    <p>{joinTitle(casteUnit.actor.eng)}</p>
-                </Fragment>
+            {DramamanwayPostUtils.getTags(post).map((tag, idx) => (
+                <p key={idx + tag}>{tag}</p>
             ))}
         </div>
     );
