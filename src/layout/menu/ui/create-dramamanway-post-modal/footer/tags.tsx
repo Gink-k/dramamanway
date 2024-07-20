@@ -1,8 +1,8 @@
 import { FC, Fragment } from 'react';
+import { DEFAULT_TAGS } from '../../../../../constants';
+import { DramamanwayPost } from '../../../../../types';
+import { capitalize } from '../../../../../lib';
 import s from './styles.module.scss';
-import { DEFAULT_TAGS } from '../../../../constants';
-import { DramamanwayPost } from '../../../../types';
-import { capitalize } from '../../../../lib';
 
 const joinTitle = (title: string) => title.split(' ').map(capitalize).join('');
 

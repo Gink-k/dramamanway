@@ -10,19 +10,27 @@ type CasteProps = {
     onChange: (caste: ICaste) => void;
 };
 
+type CasteUnitKey = keyof CasteUnit;
+
 export const Caste: FC<CasteProps> = ({ value, onChange }) => {
     const { description, icon } = SECTIONS_DICT.caste;
 
     const updateCaste = (
         idx: number,
-        key: keyof CasteUnit,
-        casteUnitValue: CasteUnit[keyof CasteUnit]
+        key: CasteUnitKey,
+        casteUnitValue: CasteUnit[CasteUnitKey]
     ) => {
         const newCaste = [...value.units];
 
         newCaste[idx] = { ...newCaste[idx], [key]: casteUnitValue };
         onChange({ ...value, units: newCaste });
     };
+    const addCasteUnit = () =>
+        onChange({
+            ...value,
+            units: [...value.units, DramamanwayPostUtils.getEmptyCasteUnit()],
+        });
+
     return (
         <div
             className={s.caste}
@@ -35,18 +43,7 @@ export const Caste: FC<CasteProps> = ({ value, onChange }) => {
                 <p className={s.label}>
                     {description} {icon}
                 </p>
-                <p
-                    className={s.addActorBtn}
-                    onClick={() =>
-                        onChange({
-                            ...value,
-                            units: [
-                                ...value.units,
-                                DramamanwayPostUtils.getEmptyCasteUnit(),
-                            ],
-                        })
-                    }
-                >
+                <p className={s.addActorBtn} onClick={addCasteUnit}>
                     Добавить актера
                 </p>
             </div>

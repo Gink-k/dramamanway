@@ -4,3 +4,4 @@ export * from './round2';
 export * from './score';
 export * from './to-number';
 export * from './capitalize';
+export * from './copy-text-to-clipboard';

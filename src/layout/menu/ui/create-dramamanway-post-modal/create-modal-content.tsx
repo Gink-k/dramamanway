@@ -11,8 +11,8 @@ import { LOCALES, SECTIONS_DICT } from '../../../../constants';
 import { usePersistDramamanwayPost } from '../../../../hooks';
 import s from './styles.module.scss';
 import { Caste } from './caste';
-import { Tags } from './tags';
 import { Score } from './score';
+import { Footer } from './footer';
 
 type CreateModalContentProps = {};
 
@@ -97,7 +97,7 @@ export const CreateModalContent: FC<CreateModalContentProps> = ({}) => {
                 <div className={s.sections}>
                     <TextField {...getStandardProps('feedback')} />
                     <TextField {...getStandardProps('negativeAspects')} />
-                    <Tags post={dramamanwayPost} />
+                    <Footer dramamanwayPost={dramamanwayPost} />
                 </div>
             </div>
         </div>
