@@ -197,14 +197,19 @@ ${post.info.year} год - ${post.info.episodesNumber} ${getNoun(post.info.episo
 
 === О чем 💬 ===:
 ${post.about}
+
 === Идея ✨ ===:
 ${post.idea}
+
 === Впечатления 🙀 ===:
 ${post.feedback}
+
 === Что не понравилось? 🚫 ===:
 ${post.negativeAspects}
+
 === Каст 👫 ===:
 ${DramamanwayPostUtils.getRawCaste(post)}
+
 === Оценки 💯 ===:
 ${getScore('plot')}
 ${getScore('dialogues')}
@@ -222,9 +227,10 @@ ${getScore('finalScore')}
 
 === Рекомендация к просмотру 📺 ===:
 ${post.recommendation}
+
 === Следующая остановка "${post.nextPostTitle}" 🚌 ===
 
-${DramamanwayPostUtils.getTags(post)}
+${DramamanwayPostUtils.getTags(post).join(' ')}
 `;
     }
 }

@@ -102,6 +102,15 @@ export const CreateModalContent: FC<CreateModalContentProps> = ({}) => {
                                 />
                                 <TextField
                                     type={'number'}
+                                    placeholder={'Введи год'}
+                                    label={`Год`}
+                                    value={dramamanwayPost.info.year.toString()}
+                                    onChange={(text) =>
+                                        updateInfo('year', Number(text))
+                                    }
+                                />
+                                <TextField
+                                    type={'number'}
                                     placeholder={'Введи количество серий'}
                                     label={`Количество серий`}
                                     value={dramamanwayPost.info.episodesNumber.toString()}
