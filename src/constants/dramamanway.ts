@@ -16,10 +16,10 @@ export const SCORE_KEYS = [
 
 export const COLUMN_KEYS = ['index', 'title', 'county', ...SCORE_KEYS] as const;
 
-export const KEYS_DESCRIPTION: Record<ColumnKey, string> = {
+export const COLUMN_DESCRIPTION: Record<ColumnKey, string> = {
     index: '#',
     title: 'Название',
-    county: 'Срана',
+    county: 'Страна',
     plot: 'Сюжет',
     dialogues: 'Диалоги',
     idea: 'Реализация идеи',
@@ -74,23 +74,31 @@ export const EMPTY_DRAMAMANWAY_POST: DramamanwayPost = {
 
 export const LOCALES = ['ru', 'eng', 'original'] as const;
 
-export const SECTIONS = [
-    { key: 'about', description: 'О чём?', icon: '💬', color: '' },
-    { key: 'idea', description: 'Идея', icon: '✨', color: '' },
-    { key: 'feedback', description: 'Впечатления', icon: '🙀', color: '' },
-    {
-        key: 'negativeAspects',
+export const SECTIONS_DICT = {
+    about: { description: 'О чём?', icon: '💬', color: '' },
+    idea: { description: 'Идея', icon: '✨', color: '' },
+    feedback: { description: 'Впечатления', icon: '🙀', color: '' },
+    negativeAspects: {
         description: 'Что не понравилось?',
         icon: '🚫',
         color: '',
     },
-    { key: 'caste', description: 'Каст', icon: '👫', color: '#f1f100' },
-    {
-        key: 'recommendation',
+    caste: { description: 'Каст', icon: '👫', color: '' },
+    score: { description: 'Оценки', icon: '💯', color: '' },
+    recommendation: {
         description: 'Рекомендация к просмотру',
         icon: '📺',
         color: '',
     },
-] as const;
+} as const;
+
+type SectionDict = typeof SECTIONS_DICT;
+type SectionKey = keyof SectionDict;
+type SectionInfo = SectionDict[SectionKey] & { key: SectionKey };
+
+export const SECTIONS = Object.entries(SECTIONS_DICT).reduce(
+    (acc, [key, value]) => [...acc, { key: key as SectionKey, ...value }],
+    [] as SectionInfo[]
+);
 
 export const DEFAULT_TAGS = ['dramamanway', 'drama', 'дорама'];

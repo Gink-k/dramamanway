@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { COLUMN_KEYS, KEYS_DESCRIPTION } from '../../../../constants';
+import { COLUMN_DESCRIPTION, COLUMN_KEYS } from '../../../../constants';
 import s from './styles.module.scss';
 import { TableSort, useTableSort, useTableToggleSort } from '../lib';
 import cx from 'classnames';
@@ -26,7 +26,7 @@ export const Header: FC<HeaderProps> = ({}) => {
                         [s.negativeCell]: isNegativeScoreKey(key as ScoreKey),
                     })}
                 >
-                    {KEYS_DESCRIPTION[key]}{' '}
+                    {COLUMN_DESCRIPTION[key]}{' '}
                     {sort.by === key && (
                         <TriangleIcons
                             className={cx(s.sort, s[sort.order])}

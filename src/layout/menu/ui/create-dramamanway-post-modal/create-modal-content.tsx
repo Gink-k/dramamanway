@@ -4,13 +4,15 @@ import TextField from '../../../../ui/text-field';
 import {
     DramamanwayPost,
     DramamanwayPostInfo,
+    DramamanwayPostKey,
     TitleKey,
 } from '../../../../types';
-import { LOCALES } from '../../../../constants';
+import { LOCALES, SECTIONS_DICT } from '../../../../constants';
 import { usePersistDramamanwayPost } from '../../../../hooks';
 import s from './styles.module.scss';
 import { Caste } from './caste';
 import { Tags } from './tags';
+import { Score } from './score';
 
 type CreateModalContentProps = {};
 
@@ -29,7 +31,7 @@ export const CreateModalContent: FC<CreateModalContentProps> = ({}) => {
     );
     usePersistDramamanwayPost(dramamanwayPost);
 
-    const updateDramamanwayPost = <T extends keyof DramamanwayPost>(
+    const updateDramamanwayPost = <T extends DramamanwayPostKey>(
         key: T,
         value: SetStateAction<DramamanwayPost[T]>
     ) => setDramamanwayPost((post) => update(post, key, value));
@@ -44,6 +46,19 @@ export const CreateModalContent: FC<CreateModalContentProps> = ({}) => {
 
     const updateTitle = (key: TitleKey, value: string) =>
         updateInfo('title', (prevState) => update(prevState, key, value));
+
+    const getStandardProps = (key: keyof typeof SECTIONS_DICT) => {
+        const { description, icon } = SECTIONS_DICT[key];
+
+        return {
+            label: `${description} ${icon}`,
+            multiline: true,
+            value: dramamanwayPost[key] as string,
+            onChange: (val: string) => updateDramamanwayPost(key, val),
+            placeholder: 'Введи что-нибудь...',
+            className: s.textField,
+        } as const;
+    };
 
     return (
         <div className={s.createModalContainer}>
@@ -67,16 +82,21 @@ export const CreateModalContent: FC<CreateModalContentProps> = ({}) => {
                             updateDramamanwayPost('caste', caste)
                         }
                     />
+                    <div className={s.twoFields}>
+                        <TextField {...getStandardProps('about')} />
+                        <TextField {...getStandardProps('idea')} />
+                    </div>
+                    <Score
+                        score={dramamanwayPost.score}
+                        onChange={(score) =>
+                            updateDramamanwayPost('score', score)
+                        }
+                    />
+                    <TextField {...getStandardProps('recommendation')} />
                 </div>
                 <div className={s.sections}>
-                    <TextField
-                        multiline={true}
-                        value={dramamanwayPost.feedback}
-                    />
-                    <TextField
-                        multiline={true}
-                        value={dramamanwayPost.negativeAspects}
-                    />
+                    <TextField {...getStandardProps('feedback')} />
+                    <TextField {...getStandardProps('negativeAspects')} />
                     <Tags post={dramamanwayPost} />
                 </div>
             </div>

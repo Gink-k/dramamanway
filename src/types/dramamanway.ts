@@ -41,3 +41,4 @@ export type DramamanwayPost = {
     recommendation: string;
     nextPostTitle: string;
 };
+export type DramamanwayPostKey = keyof DramamanwayPost;

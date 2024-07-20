@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { DramamanwayPost } from '../../../../../types';
 import {
-    KEYS_DESCRIPTION,
+    COLUMN_DESCRIPTION,
     MAX_SCORE_VALUE,
     SCORE_KEYS,
 } from '../../../../../constants';
@@ -17,7 +17,7 @@ export const Scores: FC<ScoresProps> = ({ post }) => {
             <p className={s.title}>Оценки:</p>
             {SCORE_KEYS.map((key) => (
                 <p key={key} className={s.score}>
-                    <span className={s.label}>{KEYS_DESCRIPTION[key]}: </span>
+                    <span className={s.label}>{COLUMN_DESCRIPTION[key]}: </span>
                     <span className={s.value}>
                         {post.score[key].value} из {MAX_SCORE_VALUE}
                     </span>

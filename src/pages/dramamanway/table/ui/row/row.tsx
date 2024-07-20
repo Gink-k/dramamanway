@@ -9,7 +9,7 @@ import {
 } from '../../../../../lib';
 import { Cell } from './cell';
 import cx from 'classnames';
-import { useTableOpenedPost, useTableOpenPost } from '../../lib';
+import { useTableOpenPost } from '../../lib';
 
 export type RowProps = {
     className?: string;

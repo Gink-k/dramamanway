@@ -15,15 +15,18 @@ const SectionsBase: FC<SectionsProps> = ({ post }) => {
 
     return (
         <div className={s.sections}>
-            {SECTIONS.map(({ key, description, icon }) => (
-                <Section
-                    key={key}
-                    scrollIntoView={key === section}
-                    title={description + icon}
-                >
-                    {key === 'caste' ? post[key].raw : post[key]}
-                </Section>
-            ))}
+            {SECTIONS.map(
+                ({ key, description, icon }) =>
+                    key === 'score' || (
+                        <Section
+                            key={key}
+                            scrollIntoView={key === section}
+                            title={description + icon}
+                        >
+                            {key === 'caste' ? post[key].raw : post[key]}
+                        </Section>
+                    )
+            )}
         </div>
     );
 };

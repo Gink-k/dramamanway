@@ -1,0 +1,48 @@
+
+.caste {
+  display: flex;
+  flex-direction: column;
+}
+
+.casteHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 8px;
+
+  font-size: 12px;
+  line-height: 16px;
+  margin-bottom: 4px;
+  font-weight: 600;
+  color: white;
+}
+
+.casteFields {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 8px;
+  overflow: auto;
+  max-height: 118px;
+
+  > * {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+  }
+}
+
+.addActorBtn {
+  font-size: 10px;
+  border-bottom: 1px solid white;
+  cursor: pointer;
+
+  &:hover {
+    color: rgba(255, 255, 255, 0.7);
+  }
+  &:active {
+    color: rgba(255, 255, 255, 0.5);
+  }
+}
+
