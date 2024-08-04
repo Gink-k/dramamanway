@@ -20,7 +20,7 @@ export const DRAMAMANWAY_PARSE_TEMPLATE = new RegExp(
 (\\* Диалоги - (?<dialogues>\\d\\d?) из 10(?<dialoguesComment>.*)
 )?\\* Реализация идеи - (?<idea>\\d\\d?) из 10(?<ideaComment>.*)
 (\\* Саундтрек - (?<soundtrack>\\d\\d?) из 10(?<soundtrackComment>.*)
-)?\\* Достаточность\\(отсутствие лишнего\\) - (?<sufficiency>\\d\\d?) из 10(?<sufficiencyComment>.*)
+)?\\* Достаточность(\\(отсутствие лишнего\\))? - (?<sufficiency>\\d\\d?) из 10(?<sufficiencyComment>.*)
 \\* Каст - (?<caste>\\d\\d?) из 10(?<casteComment>.*)
 \\* Вероятность, что я пересмотрю - (?<rewatchingChance>\\d\\d?) из 10(?<rewatchingChanceComment>.*)
 -----

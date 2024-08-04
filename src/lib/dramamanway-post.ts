@@ -198,14 +198,14 @@ export class DramamanwayPostUtils {
     }
 
     static toDefaultPostString(post: DramamanwayPost): string {
-        const getScore = (key: ScoreKey) =>
-            `* ${COLUMN_DESCRIPTION[key]}: ${post.score[key].value} из 10${post.score[key].comment ? `(${post.score[key].comment})` : ''}`;
+        const getScore = (key: ScoreKey, sep = ' -') =>
+            `* ${COLUMN_DESCRIPTION[key]}${sep} ${post.score[key].value} из 10${post.score[key].comment ? `(${post.score[key].comment})` : ''}`;
 
         return `[ По пути дорамщика ] #${post.index}
 
 ${post.info.title.ru} | ${post.info.title.eng} | ${post.info.title.original}
 
-${post.info.year} год - ${post.info.episodesNumber} ${getNoun(post.info.episodesNumber, 'эпизод', 'эпизода', 'эпизодов')}
+${post.info.country} - ${post.info.year} год - ${post.info.episodesNumber} ${getNoun(post.info.episodesNumber, 'эпизод', 'эпизода', 'эпизодов')}
 
 === О чем 💬 ===:
 ${post.about}
@@ -235,7 +235,7 @@ ${getScore('cliche')}
 ${getScore('stupidity')}
 ${getScore('tightness')}
 -----
-${getScore('finalScore')}
+${getScore('finalScore', ':')}
 
 === Рекомендация к просмотру 📺 ===:
 ${post.recommendation}
