@@ -8,10 +8,11 @@ import { copyTextToClipboard, DramamanwayPostUtils } from '../../../../../lib';
 import Notice from '../../../../../ui/notice';
 
 type FooterProps = {
+    onNewPost: () => void;
     dramamanwayPost: DramamanwayPost;
 };
 
-export const Footer: FC<FooterProps> = ({ dramamanwayPost }) => {
+export const Footer: FC<FooterProps> = ({ dramamanwayPost, onNewPost }) => {
     const copyPostAsDefaultString = () => {
         try {
             copyTextToClipboard(
@@ -27,7 +28,10 @@ export const Footer: FC<FooterProps> = ({ dramamanwayPost }) => {
     return (
         <div className={s.footerContainer}>
             <Tags post={dramamanwayPost} />
-            <div>
+            <div className={s.controlBtns}>
+                <TooltipWrapper tipContent={'Новый пост'}>
+                    <Button onClick={onNewPost}>New</Button>
+                </TooltipWrapper>
                 <TooltipWrapper
                     position={'northEast'}
                     tipContent={'Копировать'}

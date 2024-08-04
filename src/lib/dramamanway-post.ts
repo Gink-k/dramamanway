@@ -60,6 +60,7 @@ const TEXT_SECTIONS: (keyof DramamanwayPost)[] = [
 ];
 
 const LOCALSTORAGE_KEY = 'new-dramamanway-post';
+const PREV_POST_LOCALSTORAGE_KEY = 'prev-dramamanway-post';
 
 export class DramamanwayPostUtils {
     static getEmptyCasteUnit() {
@@ -136,8 +137,8 @@ export class DramamanwayPostUtils {
         }
     }
 
-    static saveToStorage(post: DramamanwayPost) {
-        localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(post));
+    static saveToStorage(post: DramamanwayPost, key = LOCALSTORAGE_KEY) {
+        localStorage.setItem(key, JSON.stringify(post));
     }
 
     static getFromStorage = (): DramamanwayPost => {
@@ -151,6 +152,17 @@ export class DramamanwayPostUtils {
 
         return post ?? DramamanwayPostUtils.getEmpty();
     };
+
+    static newPost(prevPost: DramamanwayPost): DramamanwayPost {
+        const post = DramamanwayPostUtils.getEmpty();
+
+        DramamanwayPostUtils.saveToStorage(
+            prevPost,
+            PREV_POST_LOCALSTORAGE_KEY
+        );
+        DramamanwayPostUtils.saveToStorage(post);
+        return post;
+    }
 
     static getSectionConfig(key: keyof DramamanwayPost) {
         return SECTIONS.find((section) => section.key === key);

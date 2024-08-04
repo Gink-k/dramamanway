@@ -19,7 +19,11 @@ const computeMode = (a: any[]) => {
         counts[e] += 1;
     });
 
-    return Object.entries(counts).reduce((a, v) => (v[1] < a[1] ? a : v))[0];
+    const entries = Object.entries(counts);
+
+    return entries.length
+        ? entries.reduce((a, v) => (v[1] < a[1] ? a : v))[0]
+        : 0;
 };
 
 const computeStd = (sum: number, count: number) => round2(sum / count, 1);

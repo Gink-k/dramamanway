@@ -159,7 +159,14 @@ export const CreateModalContent: FC<CreateModalContentProps> = ({}) => {
                         <TextField {...getStandardProps('negativeAspects')} />
                     </div>
                 </div>
-                <Footer dramamanwayPost={dramamanwayPost} />
+                <Footer
+                    dramamanwayPost={dramamanwayPost}
+                    onNewPost={() =>
+                        setDramamanwayPost(
+                            DramamanwayPostUtils.newPost(dramamanwayPost)
+                        )
+                    }
+                />
             </div>
         </div>
     );
