@@ -12,30 +12,31 @@ export type CasteFieldProps = {
     onDelete: () => void;
 };
 
+const ACTOR_REGEX = /(?<ru>.+)\s*\((?<eng>.+)\)/;
+
 export const CasteField: FC<CasteFieldProps> = ({
     value,
     onChange,
     onDelete,
 }) => {
+    let strValue = value.actor.ru;
+
+    if (value.actor.eng) {
+        strValue = `${strValue} (${value.actor.eng})`;
+    }
+
     return (
         <div>
             <TextField
-                value={value.actor.ru}
-                placeholder={'ru'}
-                onChange={(ru) => {
+                value={strValue}
+                placeholder={'Актер'}
+                onChange={(ruEng) => {
+                    const { ru = ruEng, eng = '' } =
+                        ruEng.match(ACTOR_REGEX)?.groups || {};
+
                     const actor = {
                         ...value.actor,
                         ru,
-                    };
-                    onChange('actor', actor);
-                }}
-            />
-            <TextField
-                value={value.actor.eng}
-                placeholder={'eng'}
-                onChange={(eng) => {
-                    const actor = {
-                        ...value.actor,
                         eng,
                     };
                     onChange('actor', actor);
