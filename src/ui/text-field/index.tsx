@@ -15,6 +15,8 @@ export interface ITextField {
     maxLength?: number;
     invalid?: boolean;
     error?: string;
+    variant?: 'transparent' | 'normal';
+    theme?: 'dark' | 'light';
     type?: HTMLProps<HTMLInputElement>['type'];
     onClick?: React.MouseEventHandler<HTMLElement>;
     onKeyDown?: React.KeyboardEventHandler<HTMLElement>;
@@ -37,6 +39,8 @@ const TextField: React.ForwardRefExoticComponent<
             onKeyUp,
             onKeyDown,
             onFocus,
+            variant = 'transparent',
+            theme = 'light',
             ...props
         },
         ref
@@ -59,7 +63,12 @@ const TextField: React.ForwardRefExoticComponent<
 
         return (
             <div
-                className={cx(s.wrapperTextField, className)}
+                className={cx(
+                    s.wrapperTextField,
+                    s[variant],
+                    s[theme],
+                    className
+                )}
                 onKeyDown={handleKeyDown}
                 onKeyUp={onKeyUp}
             >

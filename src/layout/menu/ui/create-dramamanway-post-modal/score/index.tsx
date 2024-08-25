@@ -1,7 +1,7 @@
 import { FC } from 'react';
-import { DramamanwayPost, Score as IScore, ScoreKey } from '../../../../types';
-import { COLUMN_DESCRIPTION, SECTIONS_DICT } from '../../../../constants';
-import TextField from '../../../../ui/text-field';
+import { DramamanwayPost, Score as IScore, ScoreKey } from '../../../../../types';
+import { COLUMN_DESCRIPTION, SECTIONS_DICT } from '../../../../../constants';
+import TextField from '../../../../../ui/text-field';
 import s from './styles.module.scss';
 
 type ScoresProps = {
@@ -39,11 +39,7 @@ export const Score: FC<ScoresProps> = ({ score, onChange }) => {
                                     value={String(value.value)}
                                     type={'number'}
                                     onChange={(newValue) =>
-                                        updateScore(
-                                            key,
-                                            'value',
-                                            Number(newValue)
-                                        )
+                                        updateScore(key, 'value', Number(newValue))
                                     }
                                 />{' '}
                                 из 10

@@ -1,3 +1,19 @@
+.wrapperTextField {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.transparent {
+    .textField {
+        border: none;
+        background: transparent;
+        padding: 0;
+        border-radius: unset;
+    }
+}
+
+
 .textField {
     font-family: Arial;
     border-radius: 12px;
@@ -19,10 +35,35 @@
     }
 }
 
-.wrapperTextField {
-    position: relative;
-    display: flex;
-    flex-direction: column;
+.light {
+    &.transparent {
+        .textField {
+            border-bottom: 1px solid white;
+        }
+    }
+
+    .textField {
+        color: white;
+
+        &::placeholder {
+            color: rgba(220, 220, 220, 100);
+        }
+    }
+}
+
+.dark {
+    &.transparent {
+        .textField {
+            border-bottom: 1px solid black;
+        }
+    }
+
+    .textField {
+        color: black;
+
+        &::placeholder {
+        }
+    }
 }
 
 .label {

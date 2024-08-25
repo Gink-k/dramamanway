@@ -8,6 +8,7 @@ export interface IButtonProps
         HTMLButtonElement
     > {
     variant?: 'primary' | 'ghost' | 'danger' | 'tertiary';
+    size?: 'small' | 'medium' | 'large';
     icon?: React.ReactNode;
 }
 
@@ -16,21 +17,18 @@ export const Button: React.FC<IButtonProps> = ({
     variant = 'primary',
     className = '',
     icon,
+    size = 'medium',
     ...props
 }) => {
-    const baseClass = styles[variant as keyof typeof styles];
-
     return (
         <button
-            className={cx({
-                [styles.commonBtn]: true,
-                [baseClass]: true,
+            className={cx(styles.commonBtn, styles[variant!], styles[size!], {
                 [className]: !!className,
             })}
             {...props}
         >
             {icon && <span className={styles.icon}>{icon}</span>}
-            {children}
+            {children && <div>{children}</div>}
         </button>
     );
 };
