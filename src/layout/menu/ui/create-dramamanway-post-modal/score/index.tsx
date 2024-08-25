@@ -1,54 +1,36 @@
 import { FC } from 'react';
-import { DramamanwayPost, Score as IScore, ScoreKey } from '../../../../../types';
-import { COLUMN_DESCRIPTION, SECTIONS_DICT } from '../../../../../constants';
-import TextField from '../../../../../ui/text-field';
+import { Score as IScore, ScoreKey } from '../../../../../types';
+import { SECTIONS_DICT } from '../../../../../constants';
 import s from './styles.module.scss';
-import { Text } from '../../../../../ui';
+import { ScoreUnit } from './score-unit';
+import { Tile } from '../../../../../ui/tile';
+import { update, useDramamanwayPost, useUpdateDramamanwayPost } from '../../../lib';
 
-type ScoresProps = {
-    score: DramamanwayPost['score'];
-    onChange: (score: DramamanwayPost['score']) => void;
-};
-
-export const Score: FC<ScoresProps> = ({ score, onChange }) => {
+export const Score: FC = () => {
+    const { score } = useDramamanwayPost();
+    const updateScore = useUpdateDramamanwayPost('score');
     const { description, icon } = SECTIONS_DICT.score;
-    const updateScore = <T extends keyof Required<IScore>>(
-        key: ScoreKey,
-        scoreUnitKey: T,
-        scoreUnit: IScore[T]
-    ) => {
-        const newScoreUnit = { ...score[key] };
 
-        newScoreUnit[scoreUnitKey] = scoreUnit;
-        onChange({ ...score, [key]: newScoreUnit });
+    const updateScoreUnit = (key: ScoreKey, scoreUnit: IScore) => {
+        updateScore((prevState) => update(prevState, key, scoreUnit));
     };
+
     return (
-        <div>
-            <p className={s.label}>
-                {description} {icon}
-            </p>
+        <Tile className={s.scoreContainer} label={`${description} ${icon}`}>
             <div className={s.scoreList}>
                 {Object.entries(score).map((entries) => {
                     const [key, value] = entries as [ScoreKey, IScore];
 
                     return (
-                        <Text className={s.score} key={key}>
-                            {COLUMN_DESCRIPTION[key]}:{' '}
-                            <Text className={s.scoreValue} weight={'bold'}>
-                                <TextField
-                                    className={s.textFieldAsText}
-                                    value={String(value.value)}
-                                    type={'number'}
-                                    onChange={(newValue) =>
-                                        updateScore(key, 'value', Number(newValue))
-                                    }
-                                />
-                                из <div>10</div>
-                            </Text>
-                        </Text>
+                        <ScoreUnit
+                            key={key}
+                            value={value}
+                            scoreKey={key}
+                            updateScore={updateScoreUnit}
+                        />
                     );
                 })}
             </div>
-        </div>
+        </Tile>
     );
 };

@@ -1,21 +1,17 @@
-import { Dispatch, FC, SetStateAction } from 'react';
+import { FC } from 'react';
 import TextField from '../../../../../ui/text-field';
-import { DramamanwayPost } from '../../../../../types';
-import { updateDramamanwayPostBase, updateInfoBase } from '../../../lib';
-import { Tile } from '../tile';
+import {
+    useDramamanwayPost,
+    useUpdateDramamanwayPost,
+    useUpdateInfo,
+} from '../../../lib';
+import { Tile } from '../../../../../ui/tile';
 import s from './styles.module.scss';
 
-type InfoProps = {
-    dramamanwayPost: DramamanwayPost;
-    setDramamanwayPost: Dispatch<SetStateAction<DramamanwayPost>>;
-};
-
-export const Info: FC<InfoProps> = ({ setDramamanwayPost, dramamanwayPost }) => {
-    const updateInfo = updateInfoBase.bind(null, setDramamanwayPost);
-    const updateDramamanwayPost = updateDramamanwayPostBase.bind(
-        null,
-        setDramamanwayPost
-    );
+export const Info: FC = () => {
+    const dramamanwayPost = useDramamanwayPost();
+    const updateInfo = useUpdateInfo();
+    const updateDramamanwayPost = useUpdateDramamanwayPost();
 
     return (
         <Tile className={s.restInfo}>

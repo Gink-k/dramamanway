@@ -1,18 +1,19 @@
 import { FC } from 'react';
 import { Tags } from './tags';
-import { DramamanwayPost } from '../../../../../types';
 import s from './styles.module.scss';
 import { Button, CopyIcon } from '../../../../../ui';
 import TooltipWrapper from '../../../../../ui/tooltip/tooltip-wrapper';
 import { copyTextToClipboard, DramamanwayPostUtils } from '../../../../../lib';
 import Notice from '../../../../../ui/notice';
+import { useCreateDramamanwayPostModalContext } from '../../../lib';
 
-type FooterProps = {
-    onNewPost: () => void;
-    dramamanwayPost: DramamanwayPost;
-};
+export const Footer: FC = () => {
+    const { dramamanwayPost, setDramamanwayPost } =
+        useCreateDramamanwayPostModalContext();
 
-export const Footer: FC<FooterProps> = ({ dramamanwayPost, onNewPost }) => {
+    const onNewPost = () =>
+        setDramamanwayPost(DramamanwayPostUtils.newPost(dramamanwayPost));
+
     const copyPostAsDefaultString = () => {
         try {
             copyTextToClipboard(
@@ -32,10 +33,7 @@ export const Footer: FC<FooterProps> = ({ dramamanwayPost, onNewPost }) => {
                 <TooltipWrapper tipContent={'Новый пост'}>
                     <Button onClick={onNewPost}>New</Button>
                 </TooltipWrapper>
-                <TooltipWrapper
-                    position={'northEast'}
-                    tipContent={'Копировать'}
-                >
+                <TooltipWrapper position={'northEast'} tipContent={'Копировать'}>
                     <Button onClick={copyPostAsDefaultString}>
                         <CopyIcon size={18} />
                     </Button>

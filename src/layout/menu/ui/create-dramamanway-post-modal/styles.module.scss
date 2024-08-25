@@ -34,15 +34,6 @@
   }
 }
 
-.tile {
-  border-radius: 8px;
-  padding: 8px;
-  display: flex;
-  gap: 8px;
-  color: white;
-  width: max-content;
-}
-
 .main {
   display: grid;
   gap: 8px;
@@ -52,7 +43,6 @@
 
 
 .titles {
-  flex-direction: row;
   background: #40A2E3;
 
   > * {
@@ -65,24 +55,6 @@
   input {
     padding: 6px 12px;
   }
-}
-
-.about {
-  background: #002d45;
-  width: calc(50% - 4px) !important;
-}
-
-.idea {
-  background: #ffa712;
-  width: calc(50% - 4px) !important;
-}
-
-.feedback {
-  --height: 500px;
-}
-
-.negativeAspects {
-  --height: 500px;
 }
 
 .textField > div, .label {

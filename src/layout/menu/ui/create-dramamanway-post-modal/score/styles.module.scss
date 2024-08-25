@@ -14,8 +14,6 @@
 }
 
 .scoreValue {
-  display: flex;
-  flex-direction: row;
   gap: 2px;
 }
 
@@ -30,12 +28,4 @@
   border-bottom: 1px solid white;
   padding: 0;
   border-radius: unset;
-}
-
-.label {
-  font-size: 12px;
-  line-height: 16px;
-  margin-bottom: 4px;
-  font-weight: 600;
-  color: white;
 }

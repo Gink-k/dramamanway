@@ -1,20 +1,18 @@
 import { FC } from 'react';
 import s from './styles.module.scss';
-import { Caste as ICaste, CasteUnit } from '../../../../../types';
+import { CasteUnit } from '../../../../../types';
 import { DramamanwayPostUtils } from '../../../../../lib';
 import { SECTIONS_DICT } from '../../../../../constants';
 import { CasteField } from './caste-field';
-import { Tile } from '../tile';
-
-type CasteProps = {
-    value: ICaste;
-    onChange: (caste: ICaste) => void;
-};
+import { Tile } from '../../../../../ui/tile';
+import { useDramamanwayPost, useUpdateDramamanwayPost } from '../../../lib';
 
 type CasteUnitKey = keyof CasteUnit;
 
-export const Caste: FC<CasteProps> = ({ value, onChange }) => {
+export const Caste: FC = () => {
     const { description, icon } = SECTIONS_DICT.caste;
+    const { caste: value } = useDramamanwayPost();
+    const onChange = useUpdateDramamanwayPost('caste');
 
     const updateCaste = (
         idx: number,
