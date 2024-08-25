@@ -3,6 +3,7 @@ import { DramamanwayPost, Score as IScore, ScoreKey } from '../../../../../types
 import { COLUMN_DESCRIPTION, SECTIONS_DICT } from '../../../../../constants';
 import TextField from '../../../../../ui/text-field';
 import s from './styles.module.scss';
+import { Text } from '../../../../../ui';
 
 type ScoresProps = {
     score: DramamanwayPost['score'];
@@ -31,9 +32,9 @@ export const Score: FC<ScoresProps> = ({ score, onChange }) => {
                     const [key, value] = entries as [ScoreKey, IScore];
 
                     return (
-                        <div className={s.score} key={key}>
+                        <Text className={s.score} key={key}>
                             {COLUMN_DESCRIPTION[key]}:{' '}
-                            <div className={s.scoreValue}>
+                            <Text className={s.scoreValue} weight={'bold'}>
                                 <TextField
                                     className={s.textFieldAsText}
                                     value={String(value.value)}
@@ -41,10 +42,10 @@ export const Score: FC<ScoresProps> = ({ score, onChange }) => {
                                     onChange={(newValue) =>
                                         updateScore(key, 'value', Number(newValue))
                                     }
-                                />{' '}
-                                из 10
-                            </div>
-                        </div>
+                                />
+                                из <div>10</div>
+                            </Text>
+                        </Text>
                     );
                 })}
             </div>

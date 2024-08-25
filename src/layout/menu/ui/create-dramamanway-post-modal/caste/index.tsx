@@ -4,6 +4,7 @@ import { Caste as ICaste, CasteUnit } from '../../../../../types';
 import { DramamanwayPostUtils } from '../../../../../lib';
 import { SECTIONS_DICT } from '../../../../../constants';
 import { CasteField } from './caste-field';
+import { Tile } from '../tile';
 
 type CasteProps = {
     value: ICaste;
@@ -39,13 +40,7 @@ export const Caste: FC<CasteProps> = ({ value, onChange }) => {
     };
 
     return (
-        <div
-            className={s.caste}
-            style={{
-                backgroundColor:
-                    DramamanwayPostUtils.getSectionConfig('caste')?.color,
-            }}
-        >
+        <Tile className={s.casteList}>
             <div className={s.casteHeader}>
                 <p className={s.label}>
                     {description} {icon}
@@ -67,6 +62,6 @@ export const Caste: FC<CasteProps> = ({ value, onChange }) => {
                     ))
                 }
             </div>
-        </div>
+        </Tile>
     );
 };

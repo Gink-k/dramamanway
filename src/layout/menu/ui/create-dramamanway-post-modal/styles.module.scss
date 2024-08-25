@@ -27,9 +27,20 @@
     }
 
     &[type=number] {
+      max-width: 3em;
+      text-align: end;
       -moz-appearance:textfield; /* Firefox */
     }
   }
+}
+
+.tile {
+  border-radius: 8px;
+  padding: 8px;
+  display: flex;
+  gap: 8px;
+  color: white;
+  width: max-content;
 }
 
 .main {
@@ -39,32 +50,10 @@
   grid-template-rows: 1fr auto;
 }
 
-.horizontalContainer {
-  display: flex;
-  flex-direction: row;
-  overflow-x: auto;
-  gap: 16px;
-  width: 100%;
-}
-
-.aside {
-  display: flex;
-  flex-direction: column;
-  padding: 8px;
-  border-radius: 8px;
-  background: #0D9276;
-  gap: 8px;
-}
-
 
 .titles {
-  border-radius: 8px;
-  padding: 8px;
-  display: flex;
   flex-direction: row;
-  gap: 8px;
   background: #40A2E3;
-  color: white;
 
   > * {
     flex: 1;
@@ -78,22 +67,14 @@
   }
 }
 
-.sections {
-  display: flex;
-  flex-direction: row;
-  gap: 8px;
-  overflow: auto;
-  flex-wrap: wrap;
-  position: relative;
-  flex: 1 0 100%;
-
-  > * {
-    width: 100%;
-  }
+.about {
+  background: #002d45;
+  width: calc(50% - 4px) !important;
 }
 
-.about, .idea {
-  width: calc(50% - 4px);
+.idea {
+  background: #ffa712;
+  width: calc(50% - 4px) !important;
 }
 
 .feedback {
@@ -104,65 +85,10 @@
   --height: 500px;
 }
 
-.textField > div, .label, .restInfo {
+.textField > div, .label {
   font-size: 12px;
   line-height: 16px;
   margin-bottom: 4px;
   font-weight: 600;
   color: white;
-}
-
-.twoFields {
-  display: flex;
-  flex-direction: row;
-  gap: 8px;
-
-  > * {
-    flex-grow: 1;
-  }
-}
-
-
-.scoreList {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.score {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  font-size: 14px;
-  line-height: 18px;
-  font-weight: 600;
-  color: white;
-  gap: 8px;
-}
-
-.scoreValue {
-  display: flex;
-  flex-direction: row;
-  font-size: 1.2em;
-  font-weight: bolder;
-  gap: 2px;
-}
-
-.textFieldAsText input {
-  color: inherit;
-  border: none;
-  font-size: inherit;
-  font-weight: bolder;
-  font-family: inherit;
-  background: transparent;
-  width: 1.3em;
-  border-bottom: 1px solid white;
-  padding: 0;
-  border-radius: unset;
-}
-
-.restInfo {
-  display: flex;
-  flex-direction: row;
-  gap: 8px;
 }
