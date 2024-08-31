@@ -12,7 +12,11 @@ type TileProps = {
 export const Tile: FC<TileProps> = ({ label, children, className }) => {
     return (
         <div className={cx(s.tile, className)}>
-            {label && <Text>{label}</Text>}
+            {label && (
+                <Text variant={'body2'} weight={'bold'}>
+                    {label}
+                </Text>
+            )}
             <div className={s.content}>{children}</div>
         </div>
     );

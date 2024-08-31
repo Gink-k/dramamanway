@@ -1,3 +1,13 @@
 .restInfo {
   background: #dc5200;
+
+  div:has(input:not([type="number"])) {
+    width: 100%;
+  }
+}
+
+.infoContent {
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
 }

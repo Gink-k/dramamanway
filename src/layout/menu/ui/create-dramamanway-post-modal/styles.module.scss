@@ -1,20 +1,19 @@
 .createModalContainer {
-  display: grid;
-  grid-template-rows: auto 1fr;
-  gap: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 100%;
   height: 100%;
   overflow: hidden;
-  --height: 70px;
+  color: white;
 
-  > * {
-    width: 100%;
+  div:has(textarea) {
+    flex-grow: 1;
 
     textarea {
-      flex-grow: 1;
+      height: 100%;
       font-size: 16px;
       line-height: 24px;
-      height: var(--height);
     }
   }
 
@@ -29,38 +28,30 @@
     &[type=number] {
       max-width: 3em;
       text-align: end;
-      -moz-appearance:textfield; /* Firefox */
+      -moz-appearance: textfield; /* Firefox */
     }
   }
 }
 
-.main {
+.body {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 8px;
+}
+
+.row {
   display: grid;
   gap: 8px;
-  overflow: hidden;
-  grid-template-rows: 1fr auto;
-}
-
-
-.titles {
-  background: #40A2E3;
+  width: 100%;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  align-items: stretch;
+  justify-content: stretch;
 
   > * {
-    flex: 1;
-
-    > div {
-      font-weight: bold;
-    }
+    width: 100% !important;
+    height: 100% !important;
   }
-  input {
-    padding: 6px 12px;
-  }
-}
-
-.textField > div, .label {
-  font-size: 12px;
-  line-height: 16px;
-  margin-bottom: 4px;
-  font-weight: 600;
-  color: white;
 }

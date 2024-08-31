@@ -38,14 +38,9 @@ export const Caste: FC = () => {
     };
 
     return (
-        <Tile className={s.casteList}>
-            <div className={s.casteHeader}>
-                <p className={s.label}>
-                    {description} {icon}
-                </p>
-                <p className={s.addActorBtn} onClick={addCasteUnit}>
-                    Добавить актера
-                </p>
+        <Tile className={s.casteList} label={`${description} ${icon}`}>
+            <div className={s.casteHeader} onClick={addCasteUnit}>
+                <p className={s.addActorBtn}>Добавить актера</p>
             </div>
             <div className={s.casteFields}>
                 {
