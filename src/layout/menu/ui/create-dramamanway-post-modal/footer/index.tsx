@@ -9,17 +9,13 @@ import Notice from '../../../../../ui/notice';
 import { useCreateDramamanwayPostModalContext } from '../../../hooks';
 
 export const Footer: FC = () => {
-    const { dramamanwayPost, setDramamanwayPost } =
-        useCreateDramamanwayPostModalContext();
+    const { dramamanwayPost, setDramamanwayPost } = useCreateDramamanwayPostModalContext();
 
-    const onNewPost = () =>
-        setDramamanwayPost(DramamanwayPostUtils.newPost(dramamanwayPost));
+    const onNewPost = () => setDramamanwayPost(DramamanwayPostUtils.newPost(dramamanwayPost));
 
     const copyPostAsDefaultString = () => {
         try {
-            copyTextToClipboard(
-                DramamanwayPostUtils.toDefaultPostString(dramamanwayPost)
-            );
+            copyTextToClipboard(DramamanwayPostUtils.toDefaultPostString(dramamanwayPost));
             Notice.success('Пост скопирован');
         } catch (e) {
             Notice.error('Не удалось скопировать пост');
@@ -35,9 +31,10 @@ export const Footer: FC = () => {
                     <Button onClick={onNewPost}>New</Button>
                 </TooltipWrapper>
                 <TooltipWrapper position={'northEast'} tipContent={'Копировать'}>
-                    <Button onClick={copyPostAsDefaultString}>
-                        <CopyIcon size={18} />
-                    </Button>
+                    <Button
+                        onClick={copyPostAsDefaultString}
+                        icon={<CopyIcon size={18} stroke={'currentColor'} />}
+                    />
                 </TooltipWrapper>
             </div>
         </div>
