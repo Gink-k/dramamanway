@@ -7,13 +7,10 @@ export const Menu: FC = () => {
 
     return (
         <div>
-            <Button onClick={() => setCreatePostIsOpen(true)}>
+            <Button size={'small'} onClick={() => setCreatePostIsOpen(true)}>
                 Создать пост
             </Button>
-            <CreateModal
-                open={createPostIsOpen}
-                onClose={() => setCreatePostIsOpen(false)}
-            />
+            <CreateModal open={createPostIsOpen} onClose={() => setCreatePostIsOpen(false)} />
         </div>
     );
 };
