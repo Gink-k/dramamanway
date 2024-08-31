@@ -25,18 +25,14 @@ export const CreateModalContent: FC<CreateModalContentProps> = ({}) => {
             value={{ dramamanwayPost, setDramamanwayPost }}
         >
             <div className={s.createModalContainer}>
-                <div className={s.body}>
-                    <Titles />
-                    <div className={s.row}>
-                        <Info />
-                        <Caste />
-                    </div>
-                    <About />
-                    <Idea />
-                    <div className={s.row}>
-                        <Score />
-                        <Recommendation />
-                    </div>
+                <Titles />
+                <Info />
+                <Caste />
+                <About />
+                <Idea />
+                <div className={s.row}>
+                    <Score />
+                    <Recommendation />
                 </div>
                 {/*<Feedback />*/}
                 {/*<NegativeAspects />*/}

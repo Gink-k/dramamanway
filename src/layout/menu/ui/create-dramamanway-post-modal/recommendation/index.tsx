@@ -5,10 +5,10 @@ import s from './styles.module.scss';
 import TextField from '../../../../../ui/text-field';
 
 export const Recommendation: FC = () => {
-    const props = useSectionTextFieldProps('recommendation');
+    const { label, ...props } = useSectionTextFieldProps('recommendation');
 
     return (
-        <Tile className={s.recommendation}>
+        <Tile className={s.recommendation} label={label}>
             <TextField {...props} />
         </Tile>
     );

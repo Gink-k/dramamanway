@@ -1,8 +1,5 @@
 .titles {
-  display: flex;
   background: #40A2E3;
-  flex-grow: 1;
-  width: 100%;
 
   div:has(input) {
     width: 100%;

@@ -2,6 +2,17 @@
   display: flex;
   flex-direction: column;
   background-color: #00a13c;
+  max-height: 124px;
+  > * {
+    overflow: auto;
+  }
+}
+
+.casteContent {
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  height: 100%;
 }
 
 .caste {
