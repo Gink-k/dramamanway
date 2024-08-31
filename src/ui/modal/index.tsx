@@ -3,6 +3,7 @@ import s from './styles.module.scss';
 import { createPortal } from 'react-dom';
 import cx from 'classnames';
 import { CrossIcon } from '../icons';
+import useHotkey from '../hotkey-manger/useHotkey';
 
 export type ModalProps = {
     open?: boolean;
@@ -19,6 +20,8 @@ export const Modal: FC<ModalProps> = ({
     size = 'standard',
     hasBackground = true,
 }) => {
+    useHotkey('Escape', onClose!, { block: !open || !onClose });
+
     if (!open) {
         return null;
     }
@@ -26,19 +29,10 @@ export const Modal: FC<ModalProps> = ({
     return createPortal(
         <div onClick={onClose} className={s.wrapper}>
             <div
-                className={cx(
-                    s.container,
-                    s[size],
-                    hasBackground && s.withBackground
-                )}
+                className={cx(s.container, s[size], hasBackground && s.withBackground)}
                 onClick={(e) => e.stopPropagation()}
             >
-                <CrossIcon
-                    className={s.crossIcon}
-                    size={12}
-                    fill={'gray'}
-                    onClick={onClose}
-                />
+                <CrossIcon className={s.crossIcon} size={12} fill={'gray'} onClick={onClose} />
                 {children}
             </div>
         </div>,

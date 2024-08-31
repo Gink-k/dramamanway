@@ -1,15 +1,18 @@
 import React from 'react';
 import Dramamanway from './pages/dramamanway';
 import { Container, Header, Menu } from './layout';
+import HotkeyManager from './ui/hotkey-manger';
 
 function App() {
     return (
-        <Container>
-            <Header>
-                <Menu />
-            </Header>
-            <Dramamanway />
-        </Container>
+        <HotkeyManager>
+            <Container>
+                <Header>
+                    <Menu />
+                </Header>
+                <Dramamanway />
+            </Container>
+        </HotkeyManager>
     );
 }
 
