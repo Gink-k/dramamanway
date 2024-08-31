@@ -17,13 +17,13 @@ export const CreateModalContent: FC<CreateModalContentProps> = ({}) => {
     const [dramamanwayPost, setDramamanwayPost] = useNewDramamanwayPost();
 
     return (
-        <createDramamanwayPostModalContext.Provider
-            value={{ dramamanwayPost, setDramamanwayPost }}
-        >
+        <createDramamanwayPostModalContext.Provider value={{ dramamanwayPost, setDramamanwayPost }}>
             <div className={s.createModalContainer}>
                 <Titles />
-                <Info />
-                <Caste />
+                <div className={s.row}>
+                    <Info />
+                    <Caste />
+                </div>
                 <About />
                 <Idea />
                 <div className={s.row}>

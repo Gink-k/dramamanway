@@ -1,4 +1,6 @@
 .restInfo {
+  display: flex;
+  flex-grow: 1;
   background: #dc5200;
 
   div:has(input:not([type="number"])) {
