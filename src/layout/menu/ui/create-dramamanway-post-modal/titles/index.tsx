@@ -3,8 +3,9 @@ import { LOCALES } from '../../../../../constants';
 import TextField from '../../../../../ui/text-field';
 import { Tile } from '../../../../../ui/tile';
 import { TitleKey } from '../../../../../types';
-import { update, useDramamanwayPost, useUpdateInfo } from '../../../lib';
+import { update } from '../../../lib';
 import s from './styles.module.scss';
+import { useDramamanwayPost, useUpdateInfo } from '../../../hooks';
 
 export const Titles: FC = () => {
     const updateInfo = useUpdateInfo();

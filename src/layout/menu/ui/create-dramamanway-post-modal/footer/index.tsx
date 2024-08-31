@@ -5,7 +5,8 @@ import { Button, CopyIcon } from '../../../../../ui';
 import TooltipWrapper from '../../../../../ui/tooltip/tooltip-wrapper';
 import { copyTextToClipboard, DramamanwayPostUtils } from '../../../../../lib';
 import Notice from '../../../../../ui/notice';
-import { useCreateDramamanwayPostModalContext } from '../../../lib';
+
+import { useCreateDramamanwayPostModalContext } from '../../../hooks';
 
 export const Footer: FC = () => {
     const { dramamanwayPost, setDramamanwayPost } =

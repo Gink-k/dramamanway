@@ -5,7 +5,7 @@ import { DramamanwayPostUtils } from '../../../../../lib';
 import { SECTIONS_DICT } from '../../../../../constants';
 import { CasteField } from './caste-field';
 import { Tile } from '../../../../../ui/tile';
-import { useDramamanwayPost, useUpdateDramamanwayPost } from '../../../lib';
+import { useDramamanwayPost, useUpdateDramamanwayPost } from '../../../hooks';
 
 type CasteUnitKey = keyof CasteUnit;
 

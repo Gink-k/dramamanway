@@ -1,6 +1,4 @@
-import { FC, useState } from 'react';
-import { DramamanwayPostUtils } from '../../../../lib';
-import { usePersistDramamanwayPost } from '../../../../hooks';
+import { FC } from 'react';
 import s from './styles.module.scss';
 import { Caste } from './caste';
 import { Score } from './score';
@@ -11,14 +9,12 @@ import { Titles } from './titles';
 import { About } from './about';
 import { Idea } from './idea';
 import { Recommendation } from './recommendation';
+import { useNewDramamanwayPost } from '../../hooks';
 
 type CreateModalContentProps = {};
 
 export const CreateModalContent: FC<CreateModalContentProps> = ({}) => {
-    const [dramamanwayPost, setDramamanwayPost] = useState(() =>
-        DramamanwayPostUtils.getFromStorage()
-    );
-    usePersistDramamanwayPost(dramamanwayPost);
+    const [dramamanwayPost, setDramamanwayPost] = useNewDramamanwayPost();
 
     return (
         <createDramamanwayPostModalContext.Provider

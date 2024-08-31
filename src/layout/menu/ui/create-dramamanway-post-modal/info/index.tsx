@@ -1,12 +1,12 @@
 import { FC } from 'react';
 import TextField from '../../../../../ui/text-field';
+import { Tile } from '../../../../../ui/tile';
+import s from './styles.module.scss';
 import {
     useDramamanwayPost,
     useUpdateDramamanwayPost,
     useUpdateInfo,
-} from '../../../lib';
-import { Tile } from '../../../../../ui/tile';
-import s from './styles.module.scss';
+} from '../../../hooks';
 
 export const Info: FC = () => {
     const dramamanwayPost = useDramamanwayPost();

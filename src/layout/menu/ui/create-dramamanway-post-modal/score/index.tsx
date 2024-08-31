@@ -4,7 +4,8 @@ import { SECTIONS_DICT } from '../../../../../constants';
 import s from './styles.module.scss';
 import { ScoreUnit } from './score-unit';
 import { Tile } from '../../../../../ui/tile';
-import { update, useDramamanwayPost, useUpdateDramamanwayPost } from '../../../lib';
+import { update } from '../../../lib';
+import { useDramamanwayPost, useUpdateDramamanwayPost } from '../../../hooks';
 
 export const Score: FC = () => {
     const { score } = useDramamanwayPost();

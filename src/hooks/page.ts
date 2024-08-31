@@ -113,10 +113,7 @@ export const useSortedDramamanwayPosts = () => {
             case 'county':
                 return compareTwo(a.info.country, b.info.country);
             default:
-                return compareTwo(
-                    a.score[sort.by].value,
-                    b.score[sort.by].value
-                );
+                return compareTwo(a.score[sort.by].value, b.score[sort.by].value);
         }
     };
 
@@ -125,4 +122,10 @@ export const useSortedDramamanwayPosts = () => {
 
         return order * res;
     });
+};
+
+export const useDramamanwayPostMaxIndex = (): number => {
+    const posts = useDramamanwayPosts();
+
+    return posts.reduce((acc, elem) => Math.max(acc, elem.index), 0);
 };
