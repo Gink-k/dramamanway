@@ -7,6 +7,7 @@ import { EMPTY_SCORE_VALUE } from '../constants';
 type ArgsType<T> = T extends (...args: infer A) => any ? A : never;
 
 const PUBLIC_URL = 'https://vk.com/wall-222752906';
+
 const PROXY_URL = 'https://thingproxy.freeboard.io/fetch/'; //'http://localhost:3000/fetch/'; // 'https://thingproxy.freeboard.io/fetch/'
 const PAGES_REGEX = /<div class="pg_in">(?<maxIndex>\d+)<\/div>/gm;
 const USER_AGENT =
